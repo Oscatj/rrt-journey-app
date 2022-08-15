@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "102277979854",
+    "project_id": "app-public-transport",
+    "storage_bucket": "app-public-transport.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102277979854:android:60e500530e92472350fa9f",
+        "android_client_info": {
+          "package_name": "com.example.places_autocomplete"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102277979854-9avaj24vrtgc6ld9c9qkrrl09at4l04k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIzldMDo1SjPSwtCmX6dqhP0SDb3Fu1xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102277979854-9avaj24vrtgc6ld9c9qkrrl09at4l04k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

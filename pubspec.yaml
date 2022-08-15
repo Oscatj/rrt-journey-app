@@ -39,6 +39,7 @@ dependencies:
   dio: ^4.0.6
   google_directions_api: ^0.9.1
   firebase_core: ^1.4.0
+  firebase_auth: ^3.6.3
 
 dev_dependencies:
   flutter_test:

@@ -139,6 +139,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  flutter_meedu:
+    dependency: "direct main"
+    description:
+      name: flutter_meedu
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.4.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -268,6 +275,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
+  meedu:
+    dependency: transitive
+    description:
+      name: meedu
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.3.0"
   meta:
     dependency: transitive
     description:

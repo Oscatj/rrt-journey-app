@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 // import 'package:google_directions_api/google_directions_api.dart';
 // import 'package:google_place/google_place.dart';
 import 'package:places_autocomplete/services/directions.repository.dart';
+
+import '../../domain/models/direction.dart';
 // import 'package:places_test/places_service.dart';
 
 // import 'directions_service.dart';
-import '../models/direction.dart';
 
-class Routes extends StatefulWidget {
+class Rutas extends StatefulWidget {
   @override
-  State<Routes> createState() => _RoutesState();
+  State<Rutas> createState() => _RutasState();
 }
 
-class _RoutesState extends State<Routes> {
+class _RutasState extends State<Rutas> {
 
   var service = DirectionsRepository();
   bool isLoading = true;
@@ -91,7 +92,7 @@ class _RoutesState extends State<Routes> {
                                       ),
                                   ),
                                       onPressed: () { 
-                                        Routes();
+                                        Rutas();
                                       },
                                     child: Text('Ver detalle'),
                                     );

@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
-import 'package:places_autocomplete/Pages/SearchAutocomplete.dart';
-import 'package:places_autocomplete/Pages/places_service.dart';
+import 'package:places_autocomplete/app/ui/Pages/SearchAutocomplete.dart';
+import 'package:places_autocomplete/app/ui/Pages/places_service.dart';
 import 'package:places_autocomplete/services/directions.repository.dart';
 import 'package:places_autocomplete/services/directions_service.dart';
 
-import 'Routes.dart';
+import 'Rutas.dart';
 import 'map.utils.dart';
 
 class MarkerIndication extends StatefulWidget {
@@ -155,7 +155,7 @@ class MarkerIndicationState extends State<MarkerIndication> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => Routes())
+                          builder: ((context) => Rutas())
                           ),
                       );
                     },

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:places_autocomplete/models/direction.dart';
+import 'package:places_autocomplete/app/domain/models/direction.dart';
 
 class DirectionsRepository {
   static const String _baseUrl =

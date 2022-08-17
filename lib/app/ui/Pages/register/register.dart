@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
+import 'package:places_autocomplete/app/ui/Pages/login/controller/login_controller.dart';
 import 'package:places_autocomplete/app/ui/Pages/register/controller/register_state.dart';
 import 'package:places_autocomplete/app/ui/Pages/register/utils/send_register_form.dart';
 import 'package:places_autocomplete/app/ui/global_widgets/custom_input_field.dart';
@@ -8,6 +9,10 @@ import 'package:places_autocomplete/app/utils/email_validator.dart';
 import 'package:places_autocomplete/app/utils/name_validator.dart';
 
 import 'controller/register_controller.dart';
+
+final loginProvider = SimpleProvider(
+  (_) => LoginController(),
+);
 
 final RegisterProvider = StateProvider<RegisterController, RegisterState>(
   (_) => RegisterController(),
@@ -32,14 +37,13 @@ class Register extends StatelessWidget {
           color: Colors.transparent,
           child: Form(
             key: controller.formKey,
-            child: Column(
+            child: ListView(
               children: [
                 CustomInputField(
                   label: 'Nombre',
                   onChange: controller.onNameChange,
                   validator: (text) {
-                    if (text==null) return null;
-                    return isValidName(text) ? null : "Nombre invalido";
+                    return isValidName(text!) ? null : "Nombre inválido";
                   },
                   ),
                   const SizedBox(
@@ -49,8 +53,7 @@ class Register extends StatelessWidget {
                   label: 'Apellido',
                   onChange: controller.onLastNameChange,
                   validator: (text) {
-                    if (text==null) return null;
-                    return isValidName(text) ? null : "Apellido invalido";
+                    return isValidName(text!) ? null : "Apellido inválido";
                   },
                   ),
                   const SizedBox(
@@ -61,8 +64,7 @@ class Register extends StatelessWidget {
                   inputType: TextInputType.emailAddress,
                   onChange: controller.onEmailChange,
                   validator: (text) {
-                    if (text==null) return null;
-                    return isValidEmail(text) ? null : "Correo invalido";
+                    return isValidEmail(text!) ? null : "Correo inválido";
                   },
                   ),
                   const SizedBox(
@@ -73,11 +75,10 @@ class Register extends StatelessWidget {
                   onChange: controller.onPasswordChange,
                   isPassword: true,
                   validator: (text){
-                    if (text == null) return null;
-                    if (text.trim().length >= 6){
+                    if (text!.trim().length >= 6){
                       return null;
                     }
-                    return "Contraseña incorrecta";
+                    return "Contraseña inválida";
                   },
                   ),
                   const SizedBox(
@@ -94,14 +95,14 @@ class Register extends StatelessWidget {
                       onChange: controller.onVPasswordChange,
                       isPassword: true,
                       validator: (text){
-                        if (text == null) return null;
+                        if (text == null) return "Contraseña inválida";
                         if (controller.state.password != text) {
                           return "Las contrasñas no coiciden";
                         } 
                         if (text.trim().length >= 6){
                           return null;
                         }
-                        return "Contraseña incorrecta";
+                        return "Contraseña inválida";
                       },
                     );
                   }),

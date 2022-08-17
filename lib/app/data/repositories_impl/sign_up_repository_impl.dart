@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:places_autocomplete/app/domain/inputs/sign_up.dart';
 import 'package:places_autocomplete/app/domain/repositories/sign_up_repository.dart';
+import 'package:places_autocomplete/app/domain/response/sign_up_response.dart';
 
 class SignUpRepositoryImpl implements SignUpRepository {
   final FirebaseAuth _auth;
@@ -18,7 +19,7 @@ class SignUpRepositoryImpl implements SignUpRepository {
       );
       return SignUpResponse(null, userCredential.user!);
     } on FirebaseAuthException catch (e) {
-      return SignUpResponse(e.code, null);
+      return SignUpResponse(parseStringToSignUpError(e.code), null);
     }
   }
 

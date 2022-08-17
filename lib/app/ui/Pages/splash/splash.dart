@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/ui/Pages/splash/splash_controller.dart';
 import 'package:flutter_meedu/router.dart' as router;
+import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 
 final splashProvider = SimpleProvider(
-  (_) => SplashController(),
+  (_) => SplashController(sessionProvider.read),
   );
 
 class Splash extends StatelessWidget {

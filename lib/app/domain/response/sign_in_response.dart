@@ -8,6 +8,7 @@ class SignInResponse {
 }
 
 enum SignInError {
+  tooManyRequests,
   networkRequestFailed,
   userDisable,
   userNotFoumd,
@@ -17,6 +18,8 @@ enum SignInError {
 
 SignInError parseStringToSignUpError(String code) {
   switch(code){
+    case "too-many-requests":
+      return SignInError.tooManyRequests;
     case "user-disabled":
       return SignInError.userDisable;
     case "user-not-found":

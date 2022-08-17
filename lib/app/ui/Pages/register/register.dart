@@ -4,18 +4,15 @@ import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/ui/Pages/login/controller/login_controller.dart';
 import 'package:places_autocomplete/app/ui/Pages/register/controller/register_state.dart';
 import 'package:places_autocomplete/app/ui/Pages/register/utils/send_register_form.dart';
+import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 import 'package:places_autocomplete/app/ui/global_widgets/custom_input_field.dart';
 import 'package:places_autocomplete/app/utils/email_validator.dart';
 import 'package:places_autocomplete/app/utils/name_validator.dart';
 
 import 'controller/register_controller.dart';
 
-final loginProvider = SimpleProvider(
-  (_) => LoginController(),
-);
-
 final RegisterProvider = StateProvider<RegisterController, RegisterState>(
-  (_) => RegisterController(),
+  (_) => RegisterController(sessionProvider.read),
 );
 
 class Register extends StatelessWidget {

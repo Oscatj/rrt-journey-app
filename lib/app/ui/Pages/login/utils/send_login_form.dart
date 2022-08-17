@@ -3,8 +3,9 @@ import 'package:places_autocomplete/app/domain/response/sign_in_response.dart';
 import 'package:places_autocomplete/app/ui/Routes/routes.dart';
 import 'package:places_autocomplete/app/ui/global_widgets/dialogs/dialog.dart';
 import 'package:places_autocomplete/app/ui/global_widgets/dialogs/progress_dialog.dart';
-import '../../register/register.dart' show loginProvider;
 import 'package:flutter_meedu/router.dart' as router;
+
+import '../login.dart' show loginProvider;
 
 Future<void> SendLoginForm (BuildContext context ) async {
   final controller = loginProvider.read;
@@ -22,6 +23,9 @@ Future<void> SendLoginForm (BuildContext context ) async {
           break;
         case SignInError.userDisable:
           errorMessage = "Su usuario se encuentra inhabilitado";
+          break;
+        case SignInError.tooManyRequests:
+          errorMessage= "Deamasiadas peticiones realizadas";
           break;
         case SignInError.userNotFoumd:
           errorMessage = "El usuario no es correcto";

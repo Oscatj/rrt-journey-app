@@ -3,17 +3,20 @@ import 'package:flutter_meedu/meedu.dart';
 import 'package:places_autocomplete/app/domain/inputs/sign_up.dart';
 import 'package:places_autocomplete/app/domain/response/sign_up_response.dart';
 import 'package:places_autocomplete/app/ui/Pages/register/controller/register_state.dart';
+import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 
 import '../../../../domain/repositories/sign_up_repository.dart';
 
 class RegisterController extends StateNotifier<RegisterState>{
-  RegisterController(): super(RegisterState.initialState);
+  final SessionController _sessionController;
+
+  RegisterController(this._sessionController): super(RegisterState.initialState);
   
   final GlobalKey<FormState> formKey = GlobalKey();
   final _signUpRepository = Get.i.find<SignUpRepository>();
 
-  Future <SignUpResponse> submit(){
-   return _signUpRepository.register(
+  Future <SignUpResponse> submit() async {
+   final response = await _signUpRepository.register(
       SignUpData(
         name: state.name, 
         lastname: state.lastname, 
@@ -21,6 +24,10 @@ class RegisterController extends StateNotifier<RegisterState>{
         password: state.password
       ),
     );
+    if (response.error == null){
+      _sessionController.setUser(response.user!);
+    }
+    return response;
   }
 
   void onNameChange (String text){

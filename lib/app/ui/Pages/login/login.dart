@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/router.dart' as router;
 import 'package:flutter_meedu/state.dart';
 import 'package:places_autocomplete/app/ui/Pages/login/controller/login_controller.dart';
 import 'package:places_autocomplete/app/ui/Pages/login/utils/send_login_form.dart';
-import 'package:places_autocomplete/app/ui/Pages/register/register.dart';
 import 'package:places_autocomplete/app/ui/Routes/routes.dart';
+import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 import 'package:places_autocomplete/app/ui/global_widgets/custom_input_field.dart';
 import 'package:places_autocomplete/app/utils/email_validator.dart';
+
+final loginProvider = SimpleProvider(
+  (_) => LoginController(sessionProvider.read),
+);
 
 class Login extends StatelessWidget {
  const Login({Key? key}) : super(key: key);
@@ -55,9 +60,19 @@ class Login extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height:20),
-                  ElevatedButton(
-                    onPressed: () => SendLoginForm(context),
-                    child: const Text('Iniciar Sesion')
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () => router.pushNamed(Routes.RESET_PASSWORD), 
+                        child: const Text ('¿Olvidaste tu contraseña?'),
+                        ),
+                        const SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () => SendLoginForm(context),
+                        child: const Text('Iniciar Sesion')
+                      ),
+                    ],
                   ),
                   const SizedBox(height:20),
                   ElevatedButton(
@@ -66,6 +81,7 @@ class Login extends StatelessWidget {
                     ), 
                     child: const Text('Registrarse')
                   ),
+                  const SizedBox(height:20),
                 ],
               ),
             ),),

@@ -23,6 +23,9 @@ Future<void> SendRegisterForm(BuildContext context) async {
         case SignUpError.emailAlreadyInUse:
           content = "Correo inválido";
           break;
+        case SignUpError.tooManyRequests:
+          content = "Deamasiadas peticiones realizadas";
+          break;
         case SignUpError.weakPassword:
           content = "Contraseña inválida";
           break;

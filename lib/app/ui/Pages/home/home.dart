@@ -4,6 +4,7 @@ import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:places_autocomplete/app/domain/repositories/authentication_repository.dart';
 import 'package:flutter_meedu/router.dart' as router;
+import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
 import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 
 import '../../Routes/routes.dart';
@@ -14,7 +15,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(),
+      drawer: NavBar(),
+      appBar: AppBar(
+        title: Text ("RRT-JOURNEY")),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -27,18 +30,9 @@ class Home extends StatelessWidget {
             ),
             Text("Home Page"),
             SizedBox(height: 20),
-            CupertinoButton(
-              child: Text("Salir"), 
-              onPressed: () async {
-                await sessionProvider.read.SignOut();
-                router.pushNamedAndRemoveUntil(Routes.LOGIN);
-              }
-              )
           ],
         ),
-        
-
-        ),
+       ),
     );
   }
 }

@@ -12,4 +12,5 @@ Map<String, Widget Function(BuildContext)> get appRoutes => {
   Routes.LOGIN: (_) => const Login(),
   Routes.RESET_PASSWORD: (_) => const ResetPassword(),
   Routes.REGISTER: (_) => const Register(),
+  Routes.CONFIGUTATION: (_) => Container()
 };

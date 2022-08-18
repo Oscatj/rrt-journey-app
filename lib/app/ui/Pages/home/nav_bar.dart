@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/ui/Pages/help/help.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
 import 'package:places_autocomplete/app/ui/Pages/my_routes/my_routes.dart';
@@ -14,12 +15,22 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Consumer(
+              builder: (_, watch, __) {
+                final user = watch(sessionProvider).user!;
+                return Text(user.displayName ?? '');
+              }
+            );
     return Drawer(
+      // backgroundColor: Colors.deepOrange,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("Oscarina"), 
+            accountName: Consumer (builder: (_, watch, __) {
+                final user = watch(sessionProvider).user!;
+                return Text(user.displayName ?? '');
+              }), 
             accountEmail: Text("oscarinatj@gmail.com"),
             currentAccountPicture: CircleAvatar(
               child: ClipOval (

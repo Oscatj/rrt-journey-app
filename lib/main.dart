@@ -8,5 +8,6 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   injectDependencies();
+  Theme:ThemeData(primaryColor: Colors.deepOrange);
   runApp(const MyApp());
 }

@@ -3,42 +3,67 @@ import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/ui/Pages/help/help.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
 import 'package:places_autocomplete/app/ui/Pages/my_routes/my_routes.dart';
+import 'package:places_autocomplete/app/ui/Pages/profile/profile.dart';
 import 'package:places_autocomplete/app/ui/Pages/public_transport/public_transport.dart';
 import 'package:places_autocomplete/app/ui/Pages/record/record.dart';
-import 'package:places_autocomplete/app/ui/Pages/setting/setting.dart';
 import 'package:places_autocomplete/app/ui/Routes/routes.dart';
 import 'package:flutter_meedu/router.dart' as router;
 import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 
-class NavBar extends StatelessWidget {
+class NavBar extends ConsumerWidget{
   const NavBar({Key? key}) : super(key: key);
-
   @override
-  Widget build(BuildContext context) {
-    Consumer(
-              builder: (_, watch, __) {
-                final user = watch(sessionProvider).user!;
-                return Text(user.displayName ?? '');
-              }
-            );
+  Widget build(BuildContext context, watch) {
+    final sessionController = watch(sessionProvider);
+    final user = sessionController.user!;
+
+    final displayName = user.displayName ??'';
+    final letter = displayName.isNotEmpty ? displayName[0] : '';
+
     return Drawer(
-      // backgroundColor: Colors.deepOrange,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
+            onDetailsPressed: (){ 
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => Profile()
+                ),
+              );
+            },
             accountName: Consumer (builder: (_, watch, __) {
                 final user = watch(sessionProvider).user!;
-                return Text(user.displayName ?? '');
-              }), 
-            accountEmail: Text("oscarinatj@gmail.com"),
-            currentAccountPicture: CircleAvatar(
-              child: ClipOval (
-                child: Image.network("https://i0.wp.com/thehappening.com/wp-content/uploads/2017/07/foto-perfil-5.jpg?resize=1024%2C694&ssl=1",
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
+                return Text(
+                  displayName,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold
+                  ),
+                );
+              }
+            ),   
+            accountEmail: Text(
+              user.email??'',
+                style: TextStyle(
+                  fontSize: 14,
                 )
+            ),
+            currentAccountPicture: CircleAvatar(
+              child: CircleAvatar(
+                radius: 65,
+                child: user.photoURL == null 
+                ? Text(
+                  letter,
+                  style: (
+                    TextStyle(
+                      fontSize: 45
+                    )
+                  ),
+                ) 
+                : null,
+                backgroundImage: user.photoURL != null ? NetworkImage(user.photoURL!): null,
               ),
             ),
             decoration: BoxDecoration (
@@ -102,7 +127,7 @@ class NavBar extends StatelessWidget {
               );
             }
           ),
-          Divider(),
+          Divider(),/*
           ListTile(
             leading: Icon(Icons.settings),
             title: Text ("Configuración"),
@@ -115,7 +140,7 @@ class NavBar extends StatelessWidget {
                 ),
               );
             }
-          ),
+          ),*/
           ListTile(
             leading: Icon(Icons.help),
             title: Text ("Ayuda"),

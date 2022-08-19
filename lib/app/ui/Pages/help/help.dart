@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../home/home.dart';
 
 class Help extends StatelessWidget {
@@ -40,7 +39,7 @@ class Help extends StatelessWidget {
                 ),
               ),
               const Text(
-                'RRT-JOURNEY',
+                'Ayuda',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,

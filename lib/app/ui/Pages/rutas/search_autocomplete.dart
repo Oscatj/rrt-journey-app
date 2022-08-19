@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
 
-import 'MarkerIndication.dart';
+import 'controller/controller_indication.dart';
 
 class SearchAutocomplete extends StatefulWidget {
 
@@ -46,7 +46,7 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
   void autoCompleteSearch (String value) async {
     var result = await googlePlace.autocomplete.get(value);
     if(result != null && result.predictions != null && mounted){
-      print(result.predictions!.first.description);
+      //print(result.predictions!.first.description);
       setState(() {
         predictions = result.predictions!;
       });
@@ -142,7 +142,7 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
                   if(_debounce?.isActive ?? false) _debounce!.cancel();
                   _debounce = Timer(const Duration(milliseconds: 1000), (){
                     if(value.isNotEmpty) {
-                  autoCompleteSearch(value);
+                      autoCompleteSearch(value);
                     }
                     else{
                       setState(() {
@@ -187,7 +187,7 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context) => MarkerIndication(
+                            builder: (context) => ControllerIndication(
                               startPosition: startPosition,
                               endPosition: endPosition,
                             )),

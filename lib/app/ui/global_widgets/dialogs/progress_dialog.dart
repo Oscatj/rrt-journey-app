@@ -11,7 +11,9 @@ abstract class ProgressDialog {
           height: double.infinity,
           color: Colors.black12,
           alignment: Alignment.center,
-          child: const CircularProgressIndicator(),
+          child: const CircularProgressIndicator(
+            backgroundColor: Colors.amber,
+          ),
         ), 
         onWillPop: () async => false,
       ));

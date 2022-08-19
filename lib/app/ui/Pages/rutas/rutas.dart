@@ -1,14 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-// import 'package:google_directions_api/google_directions_api.dart';
-// import 'package:google_place/google_place.dart';
+import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
+import 'package:places_autocomplete/app/ui/global_controller/theme_controller.dart';
 import 'package:places_autocomplete/services/directions.repository.dart';
-
-import '../../domain/models/direction.dart';
-// import 'package:places_test/places_service.dart';
-
-// import 'directions_service.dart';
+import '../../../domain/models/direction.dart';
 
 class Rutas extends StatefulWidget {
   @override
@@ -24,7 +18,41 @@ class _RutasState extends State<Rutas> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //title: Text(widget.title),
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: (){
+              Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => SearchAutocomplete()
+                    ),
+                  );
+            }, 
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.deepOrange,
+            ),
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: <Widget> [
+          Row(
+            //mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Rutas Posibles',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.deepOrange
+                ),
+              ),
+            ],
+          ),
+          SizedBox(width: 18),
+        ],
       ),
       body: FutureBuilder(
         // future: getPlaces(18.457666, -69.943963),

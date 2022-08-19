@@ -1,29 +1,27 @@
 import 'dart:async';
 import 'dart:ffi';
-//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
-import 'package:places_autocomplete/app/ui/Pages/SearchAutocomplete.dart';
-import 'package:places_autocomplete/app/ui/Pages/places_service.dart';
+import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
 import 'package:places_autocomplete/services/directions.repository.dart';
 import 'package:places_autocomplete/services/directions_service.dart';
 
-import 'Rutas.dart';
-import 'map.utils.dart';
+import '../rutas.dart';
+import '../utils/map.utils.dart';
 
-class MarkerIndication extends StatefulWidget {
+class ControllerIndication extends StatefulWidget {
   final DetailsResult? startPosition;
   final DetailsResult? endPosition;
 
-  const MarkerIndication ({super.key, this.startPosition, this.endPosition});
+  const ControllerIndication ({super.key, this.startPosition, this.endPosition});
   @override
-  State<MarkerIndication> createState() => MarkerIndicationState();
+  State<ControllerIndication> createState() => ControllerIndicationState();
 }
 
-class MarkerIndicationState extends State<MarkerIndication> {
+class ControllerIndicationState extends State<ControllerIndication> {
 
   late CameraPosition _initialPosition;
   final Completer<GoogleMapController> _comtroller = Completer();

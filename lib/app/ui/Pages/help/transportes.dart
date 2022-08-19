@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class SecondTab extends StatelessWidget {
@@ -659,7 +660,7 @@ class SecondTab extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    'Puerto Haina Oriental - Hipódromo',
+                    'Concepción Bona - C. Juan Bosch',
                     style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 16,
@@ -792,4 +793,4 @@ ListTile(
                 title: Text('Frecuente'),
                 subtitle: Text('Centro de los Heroes - Bus: Induveca S.A. - Hipódromo'),
                   trailing: Icon(Icons.arrow_forward_ios, size: 20),
-              ),*/
+              ),*/*/

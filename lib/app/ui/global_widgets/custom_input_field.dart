@@ -25,7 +25,7 @@ class CustomInputField extends StatefulWidget {
 class _CustomInputFieldState extends State<CustomInputField> {
 
   late bool _obscureText;
-
+  
   @override
   void initState() {
     super.initState();
@@ -56,10 +56,16 @@ class _CustomInputFieldState extends State<CustomInputField> {
           },
           decoration: InputDecoration(
             labelText: widget.label,
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20)
+            ),
             suffixIcon: widget.isPassword 
             ? CupertinoButton (
-              child: Icon (_obscureText ? Icons.visibility : Icons.visibility_off),
+              child: Icon (_obscureText 
+              ? Icons.visibility 
+              : Icons.visibility_off,
+              color: Colors.deepOrange,
+              ),             
               onPressed: (){
                 _obscureText = !_obscureText;
                 setState(() {});

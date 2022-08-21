@@ -30,60 +30,99 @@ class Login extends StatelessWidget {
             color: Colors.transparent,
             width: double.infinity,
             padding: const EdgeInsets.all(15),
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomInputField(
-                    label: "Correo electrónico",
-                    onChange: controller.onEmailChanged,
-                    inputType: TextInputType.emailAddress,
-                    validator: (text) {
-                        if(isValidEmail(text!)){
+            child: ListView(
+              children: [
+                Form(
+                key: controller.formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 200,
+                      width: 550,
+                      child: Image.asset('assets/logor.png')
+                    ),
+                    CustomInputField(
+                      label: "Correo electrónico",
+                      onChange: controller.onEmailChanged,
+                      inputType: TextInputType.emailAddress,
+                      validator: (text) {
+                          if(isValidEmail(text!)){
+                            return null;
+                          }else{
+                            return "Email Inválido";
+                          }
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    CustomInputField(
+                      label: "Contraseña",
+                      onChange: controller.onPasswordChanged,
+                      isPassword: true,
+                      validator: (text){
+                        if(text!.trim().length >= 6){
                           return null;
-                        }else{
-                          return "Email Inválido";
                         }
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  CustomInputField(
-                    label: "Contraseña",
-                    onChange: controller.onPasswordChanged,
-                    isPassword: true,
-                    validator: (text){
-                      if(text!.trim().length >= 6){
-                        return null;
-                      }
-                      return "Contraseña inválida";
-                    },
-                  ),
-                  const SizedBox(height:20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () => router.pushNamed(Routes.RESET_PASSWORD), 
-                        child: const Text ('¿Olvidaste tu contraseña?'),
+                        return "Contraseña inválida";
+                      },
+                    ),
+                    const SizedBox(height:20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () => router.pushNamed(Routes.RESET_PASSWORD), 
+                          child: const Text (
+                            '¿Olvidaste tu contraseña?',
+                              style: TextStyle(
+                              color: Colors.deepOrange
+                            ),
+                          ),
+                          ),
+                          const SizedBox(width: 10),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.deepOrange),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              )
+                            ),
+                          ),
+                          onPressed: () => SendLoginForm(context),
+                          child: const Text('Iniciar Sesion')
                         ),
-                        const SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: () => SendLoginForm(context),
-                        child: const Text('Iniciar Sesion')
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height:20),
-                  ElevatedButton(
-                    onPressed: () => router.pushNamed(
-                      Routes.REGISTER,
-                    ), 
-                    child: const Text('Registrarse')
-                  ),
-                  const SizedBox(height:20),
-                ],
-              ),
+                      ],
+                    ),
+                    const SizedBox(height:20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          '¿No tienes una cuenta?',
+                          style: TextStyle(
+                              color: Colors.deepOrange
+                            ),
+                        ),
+                        TextButton(
+                          onPressed: () => router.pushNamed(
+                            Routes.REGISTER,
+                          ), 
+                          child: const Text(
+                            'Registrarse',
+                            style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepOrange
+                          ),
+                          )
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height:20),
+                  ],
+                ),
+                )
+              ],
             ),),
         ),)
     );

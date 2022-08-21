@@ -31,13 +31,6 @@ class Help extends StatelessWidget {
           Row(
             //mainAxisSize: MainAxisSize.min,
             children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon (
-                  Icons.location_on,
-                  color: Colors.deepOrange,
-                ),
-              ),
               const Text(
                 'Ayuda',
                 style: TextStyle(
@@ -50,6 +43,49 @@ class Help extends StatelessWidget {
           ),
           SizedBox(width: 18),
         ],
+      ),
+      body: ListView(
+        children: [
+          Row(
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 20),
+                  IconButton(
+                    icon: Icon(
+                      Icons.phone_callback_sharp,
+                      color: Colors.deepOrange,
+                      size: 25,
+                    ),
+                    onPressed: () {
+                      print('IconButton pressed ...');
+                    },
+                  ),
+                  Text(
+                    'Números de Emergencia',
+                    style: TextStyle(
+                          fontFamily: 'Poppins',
+                          color: Colors.deepOrange,
+                          fontSize: 19,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                
+              ],
+            )
+          ],
+        )
+
+        ]
+        
       ),
     );
   }

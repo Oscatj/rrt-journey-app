@@ -4,9 +4,33 @@ import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
 import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 import 'package:places_autocomplete/app/ui/global_controller/theme_controller.dart';
+import 'package:places_autocomplete/app/ui/global_widgets/dialogs/dialog.dart';
+import 'package:places_autocomplete/app/ui/global_widgets/dialogs/progress_dialog.dart';
+import 'package:places_autocomplete/app/ui/global_widgets/dialogs/show_input_dialog.dart';
 
 class Profile extends ConsumerWidget {
   const Profile({Key? key}) : super(key: key);
+
+  void _updateDisplayName(BuildContext context) async {
+    final sessionController = sessionProvider.read;
+    final value = await ShowInputDialog(
+      context,
+      initialValue: sessionController.user!.displayName ?? ""
+    );
+    if(value != null){
+      ProgressDialog.show(context);
+      final user = sessionController.updateDisplayName(value);
+      Navigator.pop(context);
+      if (user == null ){
+        Dialogs.alert(
+          context,
+          title: "ERROR",
+          content: "Verifique su conexión a internet"
+        );
+      }
+    }
+  } 
+
   @override
   Widget build(BuildContext context, watch) {
     final sessionController = watch(sessionProvider);
@@ -65,7 +89,7 @@ class Profile extends ConsumerWidget {
             LabelButton(
               label: "Nombre de usuario", 
               value: displayName,
-              onPressed: (){},
+              onPressed: () => _updateDisplayName(context),
             ),
             LabelButton(
               label: "Correo electrónico", 

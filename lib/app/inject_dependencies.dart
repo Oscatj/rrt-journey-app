@@ -8,7 +8,7 @@ import 'package:places_autocomplete/app/domain/repositories/account_repository.d
 import 'package:places_autocomplete/app/domain/repositories/authentication_repository.dart';
 import 'package:places_autocomplete/app/domain/repositories/sign_up_repository.dart';
 
-void injectDependencies (){
+void injectDependencies(){
   Get.i.lazyPut<AuthenticationRepository>( 
     ()=> AuthenticationRepositoryImpl(FirebaseAuth.instance),
     );

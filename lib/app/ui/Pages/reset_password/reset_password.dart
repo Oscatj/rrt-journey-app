@@ -20,7 +20,10 @@ class ResetPassword extends StatelessWidget {
     return ProviderListener<ResetPasswordController>(
       provider: ResetPasswordProvider,
       builder: (_,controller) => Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
        child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -31,6 +34,23 @@ class ResetPassword extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  "Restablecer contraseña",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepOrange
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Al ingresar su correo electrónico recibirá un link para restablecer su contraseña",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey
+                  ),
+                ),
+                SizedBox(height: 20),
                 CustomInputField(
                   onChange: controller.onEmailChanged,
                   label: "Correo",
@@ -38,6 +58,16 @@ class ResetPassword extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith(
+                      (states) => Colors.deepOrange
+                    ),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)
+                      )
+                    ),
+                  ),
                   onPressed: () => _submit(context), 
                   child: const Text('Enviar'),
                 ),
@@ -67,7 +97,7 @@ class ResetPassword extends StatelessWidget {
         switch(response){
 
           case ResetPasswordResponse.networkRequestFailed:
-            errorMessage = 'Usted no tiene acceso a internet';
+            errorMessage = 'Sin acceso a internet';
             break;
           case ResetPasswordResponse.userDisable:
             errorMessage = 'Usuario deshabilitado';

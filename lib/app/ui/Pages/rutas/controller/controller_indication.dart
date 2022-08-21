@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
+import 'package:http/http.dart';
 import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
 import 'package:places_autocomplete/services/directions.repository.dart';
 import 'package:places_autocomplete/services/directions_service.dart';
@@ -120,20 +121,20 @@ class ControllerIndicationState extends State<ControllerIndication> {
                   initialCameraPosition: _initialPosition,
                   markers: Set.from(_markers),
                   onMapCreated: (GoogleMapController controller) {
-                                Future.delayed(
-                                    Duration(milliseconds: 2000),
-                                    () { controller.animateCamera(
-                                        CameraUpdate.newLatLngBounds(
-                                            MapUtils.boundsFromLatLngList(
-                                                _markers.map((loc) => loc.position).toList()),
-                                            1
-                                          )
-                                        );
-                                      _getPolyline();
-                                      }
-                                  );
-                          },
-                     ),
+                    Future.delayed(
+                      Duration(milliseconds: 2000),
+                      () { controller.animateCamera(
+                        CameraUpdate.newLatLngBounds(
+                          MapUtils.boundsFromLatLngList(
+                            _markers.map((loc) => loc.position).toList()),
+                          1
+                          )
+                        );
+                        _getPolyline();
+                         }
+                    );
+                  },
+               ),
               );
             }
           ),
@@ -151,12 +152,14 @@ class ControllerIndicationState extends State<ControllerIndication> {
                     ),
                     onPressed: () { 
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => Rutas())
-                          ),
-                      );
-                    },
+                          context, 
+                          MaterialPageRoute(
+                            builder: (context) => Rutas(
+                              startPosition: widget.startPosition,
+                              endPosition: widget.endPosition,
+                            )),
+                          );
+                    }, 
                     child: Text('Buscar rutas', style: TextStyle(fontSize: 26)),
                   )
             );

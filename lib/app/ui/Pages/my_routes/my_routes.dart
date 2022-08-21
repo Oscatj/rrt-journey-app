@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
+import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
 import '../rutas/search_autocomplete.dart';
 
 class MyRoutes extends StatelessWidget {
@@ -10,42 +11,46 @@ class MyRoutes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Mis rutas',
-          style: TextStyle(color: Colors.deepOrange),
-        ),
-        leading: Builder(
-          builder: (context) => IconButton(
-            onPressed: (){
-              Navigator.push(
-                    context, 
-                    MaterialPageRoute(
-                      builder: (context) => Home()
-                    ),
-                  );
-            }, 
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.deepOrange,
-            ),
-          ),
-        ),
-            actions: <Widget>[
-              IconButton(
+      drawer: const NavBar(),
+          appBar: AppBar(
+            leading: Builder(
+              builder: (context) => IconButton(
                 onPressed: (){
-                  showSearch(context: context, delegate: DataSearch());
+                  Scaffold.of(context).openDrawer();
                 }, 
-                icon: Icon(
-              Icons.search,
-              color: Colors.deepOrange,
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.deepOrange,
+                ),
+              ),
+            ),
+            actions: <Widget>[
+              Row(
+                children: [
+                  const Text(
+                    'Mis rutas',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.deepOrange
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: (){
+                      showSearch(context: context, delegate: DataSearch());
+                    }, 
+                    icon: Icon(
+                  Icons.search,
+                  color: Colors.deepOrange,
             )
-          )
+          ),
         ],
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+      )
+    ],
+    centerTitle: true,
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+  ),
       body: ListView(
         children: [
           SizedBox(height: 20),

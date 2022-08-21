@@ -22,11 +22,11 @@ class _RutasState extends State<Rutas> {
           builder: (context) => IconButton(
             onPressed: (){
               Navigator.push(
-                    context, 
-                    MaterialPageRoute(
-                      builder: (context) => SearchAutocomplete()
-                    ),
-                  );
+                context, 
+                MaterialPageRoute(
+                builder: (context) => SearchAutocomplete()
+                ),
+              );
             }, 
             icon: const Icon(
               Icons.arrow_back,

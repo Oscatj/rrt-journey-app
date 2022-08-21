@@ -4,7 +4,7 @@ import 'package:places_autocomplete/app/ui/Pages/help/help.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
 import 'package:places_autocomplete/app/ui/Pages/my_routes/my_routes.dart';
 import 'package:places_autocomplete/app/ui/Pages/profile/profile.dart';
-import 'package:places_autocomplete/app/ui/Pages/public_transport/public_transport.dart';
+import 'package:places_autocomplete/app/ui/Pages/help/transportes/transport._Metro_Tel.dart';
 import 'package:places_autocomplete/app/ui/Pages/record/record.dart';
 import 'package:places_autocomplete/app/ui/Routes/routes.dart';
 import 'package:flutter_meedu/router.dart' as router;
@@ -110,19 +110,6 @@ class NavBar extends ConsumerWidget{
                 context, 
                 MaterialPageRoute(
                   builder: (context) => Record()
-                ),
-              );
-            }
-          ),
-          ListTile(
-            leading: Icon(Icons.bus_alert),
-            title: Text ("Transportes"),
-            trailing: Icon(Icons.arrow_forward_ios, size: 20,),
-            onTap: () {
-              Navigator.push(
-                context, 
-                MaterialPageRoute(
-                  builder: (context) => PublicTransport()
                 ),
               );
             }

@@ -1,18 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
-import 'package:flutter_meedu/meedu.dart';
-import 'package:flutter_meedu/state.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:places_autocomplete/app/domain/repositories/authentication_repository.dart';
-import 'package:flutter_meedu/router.dart' as router;
 import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
 import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
-
-import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
-
-import '../../Routes/routes.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -24,7 +14,6 @@ class Home extends StatelessWidget {
     final textColor = isDark ? Colors.grey: Color.fromARGB(255, 99, 99, 99);
     final buttonColor = isDark ? Colors.white: Colors.grey.shade300;
     return Scaffold(
-          //bottomNavigationBar: HomeTabBar(),
           drawer: const NavBar(),
           appBar: AppBar(
             leading: Builder(
@@ -62,11 +51,11 @@ class Home extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(width: 18),
+              const SizedBox(width: 18),
             ],
           ),
           body: ListView(
-            padding: const EdgeInsets.all(30),
+            padding: const EdgeInsets.all(20),
             children: [
                Container(
                   child: GoogleMap(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
+import 'package:places_autocomplete/app/ui/Pages/detail_rutas/detail_rutas.dart';
 import 'package:places_autocomplete/services/directions.repository.dart';
 import '../../../domain/models/direction.dart';
 
@@ -37,8 +38,8 @@ class _RutasState extends State<Rutas> {
         backgroundColor: Colors.transparent,
         actions: <Widget> [
         Row(
-          children: [
-            const Text(
+          children: const [
+            Text(
              'Rutas posibles',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -62,12 +63,11 @@ class _RutasState extends State<Rutas> {
             var directions = snapshot.data as Direction;
             var routes = directions.routes;
             return ListView.builder(
-              
               // * render Routes
               itemCount: directions.routes!.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 20),
                   child: Card(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     color: const Color.fromARGB(221, 243, 243, 243),
@@ -77,10 +77,12 @@ class _RutasState extends State<Rutas> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text('Ruta ${index + 1}',
-                              style: const TextStyle(
-                                  color: Colors.deepOrange,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500)),
+                            style: const TextStyle(
+                                color: Colors.deepOrange,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500
+                            )
+                          ),
                           Column(
                             // * render Legs
                             children: routes![index].legs!.map((leg) {
@@ -97,19 +99,20 @@ class _RutasState extends State<Rutas> {
                                         CrossAxisAlignment.stretch,
                                     children: leg.steps!.map((step) {
                                       if (step.travelMode == TravelMode.WALKING) {
-                                        return StepWidget(
-                                          instructions: step.htmlInstructions!,
-                                          color: Colors.grey.withOpacity(0.5),
-                                        );
-                                      } else if (step.travelMode ==
-                                          TravelMode.TRANSIT) {
-                                        return StepTransitWidget(
-                                          instructions: step.htmlInstructions!,
-                                          busName:
-                                              step.transitDetails!.line!.name!,
-                                          color: Colors.deepOrange,
-                                        );
-                                      }
+                                      return StepWidget(
+                                        instructions: step.htmlInstructions!,
+                                        color: Colors.grey.withOpacity(0.5),
+                                      );
+                                    } else if (step.travelMode ==
+                                        TravelMode.TRANSIT) {
+                                      return StepTransitWidget(
+                                        instructions: step.htmlInstructions!,
+                                        busName:
+                                            step.transitDetails!.line!.name!,
+                                        color: Colors.deepOrange,
+                                        precio: 40,
+                                      );
+                                    }
                                       return Text('--${step.htmlInstructions}');
                                     }).toList(),
                                   ),
@@ -126,7 +129,14 @@ class _RutasState extends State<Rutas> {
                                             )
                                           ),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                           Navigator.push(
+                                            context, 
+                                            MaterialPageRoute(
+                                              builder: (context) => DetailRutas()
+                                            ),
+                                          );
+                                        },
                                         child: const Text('Ver detalle')
                                       ),
                                     ],
@@ -190,7 +200,7 @@ class StepWidget extends StatelessWidget {
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Icon(Icons.run_circle_outlined),
+          child: Icon(Icons.directions_walk),
         ),
         Flexible(
           child: Padding(
@@ -212,11 +222,13 @@ class StepTransitWidget extends StatelessWidget {
     required this.instructions,
     required this.color,
     required this.busName,
+    required this.precio,
   }) : super(key: key);
 
   final String busName;
   final String instructions;
   final Color color;
+  final double precio;
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +241,7 @@ class StepTransitWidget extends StatelessWidget {
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Icon(Icons.bus_alert),
+          child: Icon(Icons.directions_bus_rounded),
         ),
         Flexible(
           child: Padding(
@@ -245,6 +257,13 @@ class StepTransitWidget extends StatelessWidget {
                   instructions,
                   softWrap: true,
                 ),
+                Text(
+                  'Precio: DOP\$ ${precio.toString()}',
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w500
+                  ),
+                )
               ],
             ),
           ),

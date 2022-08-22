@@ -29,7 +29,7 @@ class Login extends StatelessWidget {
           child: Container(
             color: Colors.transparent,
             width: double.infinity,
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(25),
             child: ListView(
               children: [
                 Form(

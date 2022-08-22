@@ -32,7 +32,7 @@ class Register extends StatelessWidget {
             onTap: ()=> FocusScope.of(context).unfocus(),
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
               color: Colors.transparent,
               child: Form(
                 key: controller.formKey,
@@ -136,12 +136,7 @@ class Register extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context, 
-                            MaterialPageRoute(
-                              builder: (context) => Login()
-                            ),
-                          );
+                          Navigator.pop(context);
                         }, 
                         child: const Text(
                           'Iniciar Sesion',

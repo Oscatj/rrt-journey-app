@@ -21,9 +21,21 @@ class ResetPassword extends StatelessWidget {
       provider: ResetPasswordProvider,
       builder: (_,controller) => Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+            }, 
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.deepOrange,
+            ),
+          ),
+        ),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
-      ),
+    ),
       body: SafeArea(
        child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

@@ -57,21 +57,30 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: const BackButton(
-          color: Colors.black,
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+            }, 
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.deepOrange,
+            ),
+          ),
         ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column (
+        padding: const EdgeInsets.all(20),
+        child: ListView (
           children: [
             TextField(
               controller: _startController,
               autofocus: false,
               focusNode: startFocusNode,
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
               //showCursor: false,
               decoration: InputDecoration (
                 hintText: 'Origen',
@@ -88,7 +97,7 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
                           _startController.clear();
                       });
                     },
-                      icon: Icon (
+                      icon: const Icon (
                         Icons.clear_outlined, 
                         color: Colors.deepOrange,)
                     )
@@ -108,14 +117,14 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
                   });
                 },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
             TextField(
               controller: _endController,
               autofocus: false,
               focusNode: endFocusNode,
               enabled: _startController.text.isNotEmpty && startPosition != null,
               //showCursor: false,
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
               decoration: InputDecoration (
                 hintText: 'Destino',
                 hintStyle: const TextStyle(
@@ -131,7 +140,7 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
                           _endController.clear();
                       });
                     },
-                      icon: Icon (
+                      icon: const Icon (
                         Icons.clear_outlined, 
                         color: Colors.deepOrange
                       ),
@@ -158,7 +167,7 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
               itemCount: predictions.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     backgroundColor: Colors.deepOrange,
                     child: Icon(
                       Icons.pin_drop,

@@ -21,7 +21,7 @@ class LoginController extends SimpleNotifier {
   void onPasswordChanged(String text) {
     _password = text;
   }
-  Future<SignInResponse> submit() async {
+  Future<SignInResponse> singInWithEmailAndPassword() async {
     final response = await _AuthenticationRepository.SignInWithEmailAndPassword(
       _email, 
       _password
@@ -30,5 +30,12 @@ class LoginController extends SimpleNotifier {
       _sessionController.setUser(response.user!);
     }
     return response;
+  }
+  Future<SignInResponse> singInWithGoogle() async {
+   final response = await _AuthenticationRepository.SignInWithGoogle();
+   if(response.error == null){
+    _sessionController.setUser(response.user!);
+   }
+   return response;
   }
 }

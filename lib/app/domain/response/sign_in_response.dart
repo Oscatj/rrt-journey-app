@@ -3,8 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 class SignInResponse {
   final SignInError? error;
   final User? user;
+  final String? providerId;
 
-  SignInResponse(this.error, this.user);
+  SignInResponse({
+    required this.error, 
+    required this.user, 
+    required this.providerId
+  });
 }
 
 enum SignInError {
@@ -14,21 +19,40 @@ enum SignInError {
   userNotFoumd,
   wrongPassword,
   unknown,
+  accountExistsWithDifferentCredential,
+  invalidCredential
 }
 
-SignInError parseStringToSignUpError(String code) {
-  switch(code){
+SignInResponse getSignUpError(FirebaseAuthException e) {
+  late SignInError error;
+  switch(e.code){
     case "too-many-requests":
-      return SignInError.tooManyRequests;
+      error = SignInError.tooManyRequests;
+      break;
     case "user-disabled":
-      return SignInError.userDisable;
+      error = SignInError.userDisable;
+      break;
     case "user-not-found":
-      return SignInError.userNotFoumd;
+      error = SignInError.userNotFoumd;
+      break;
     case "network-request-failed":
-      return SignInError.networkRequestFailed;
+      error = SignInError.networkRequestFailed;
+      break;
     case "wrong-password":
-      return SignInError.wrongPassword;
+      error =  SignInError.wrongPassword;
+      break;
+     case "invalid-credential":
+      error =  SignInError.invalidCredential;
+      break;
+    case "account-exists-with-different-credential":
+      error = SignInError.accountExistsWithDifferentCredential;
+      break;
     default:
-      return SignInError.unknown;
+      error = SignInError.unknown;
   }
+  return SignInResponse(
+    error: error, 
+    user: null, 
+    providerId: e.credential?.providerId
+  );
 }

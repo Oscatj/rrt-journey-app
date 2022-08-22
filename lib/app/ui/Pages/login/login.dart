@@ -4,6 +4,7 @@ import 'package:flutter_meedu/router.dart' as router;
 import 'package:flutter_meedu/state.dart';
 import 'package:places_autocomplete/app/ui/Pages/login/controller/login_controller.dart';
 import 'package:places_autocomplete/app/ui/Pages/login/utils/send_login_form.dart';
+import 'package:places_autocomplete/app/ui/Pages/login/widgets/social.dart';
 import 'package:places_autocomplete/app/ui/Routes/routes.dart';
 import 'package:places_autocomplete/app/ui/global_controller/session_controller.dart';
 import 'package:places_autocomplete/app/ui/global_widgets/custom_input_field.dart';
@@ -101,7 +102,8 @@ class Login extends StatelessWidget {
                         const Text(
                           '¿No tienes una cuenta?',
                           style: TextStyle(
-                              color: Colors.deepOrange
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400
                             ),
                         ),
                         TextButton(
@@ -118,7 +120,16 @@ class Login extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height:20),
+                    const SizedBox(height:30),
+                    Text(
+                      "Iniciar sesion con",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400
+                            ),
+                    ),
+                    SizedBox(height: 10),
+                    const SocialButtons(),
                   ],
                 ),
                 )

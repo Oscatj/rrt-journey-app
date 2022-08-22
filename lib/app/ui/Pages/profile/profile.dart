@@ -81,11 +81,13 @@ class Profile extends ConsumerWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             )),
             Center(
-                child: Text(user.email ?? '',
-                    style: TextStyle(
-                      fontSize: 17,
-                    ))),
-            SizedBox(height: 20),
+              child: Text(
+                user.email ?? '',
+                style: const TextStyle(
+                fontSize: 17)
+              )
+            ),
+            const SizedBox(height: 20),
             LabelButton(
               label: "Nombre de usuario", 
               value: displayName,
@@ -98,18 +100,34 @@ class Profile extends ConsumerWidget {
             LabelButton(
               label: "Verificación de correo", 
               value: user.emailVerified?"Sí" : "No"
-            ),/*
-            LabelButton(
-              label: "Contraseña", 
-              value: user.updatePassword(newPassword)
-            ),*/
-            CupertinoSwitch(
+            ),            
+            ListTile(
+              leading: const Text(
+                'Cambiar modo',
+                style: TextStyle(
+                  fontSize: 15, 
+                  fontWeight: FontWeight.w500
+                ),
+              ),
+              trailing: CupertinoSwitch(
               activeColor: Colors.deepOrange,
               value: theme.isDark, 
               onChanged: (_){
                 themeProvider.read.toggle();
               }
-            )
+            ),
+            ),
+            const SizedBox(height: 90),
+            //Divider(),
+            TextButton(
+              onPressed: (){}, 
+              child: const Text(
+                "Eliminar cuenta",
+                style: TextStyle(
+                  color: Colors.red,
+                fontSize: 16
+                ),
+              ))
           ],
         ));
   }

@@ -17,6 +17,7 @@ class DirectionsRepository {
       'destination': destination,
       'alternatives': 'true',
       'mode': 'transit',
+      'transit_mode': 'bus|subway|train',
       'language': 'es',
       'key': API_KEY,
     });

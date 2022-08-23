@@ -30,7 +30,6 @@ class Profile extends ConsumerWidget {
       }
     }
   } 
-
   @override
   Widget build(BuildContext context, watch) {
     final sessionController = watch(sessionProvider);
@@ -120,7 +119,7 @@ class Profile extends ConsumerWidget {
             const SizedBox(height: 90),
             //Divider(),
             TextButton(
-              onPressed: (){}, 
+              onPressed: () {}, 
               child: const Text(
                 "Eliminar cuenta",
                 style: TextStyle(

@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/domain/repositories/account_repository.dart';
 import 'package:places_autocomplete/app/domain/repositories/authentication_repository.dart';
-import 'package:places_autocomplete/app/ui/global_widgets/dialogs/progress_dialog.dart';
 
 class SessionController extends SimpleNotifier{
   User? _user;
@@ -25,7 +24,7 @@ class SessionController extends SimpleNotifier{
     }
     return user;
   }
-
+  
   Future<void> SignOut() async {
     await _auth.signOut();
     _user = null;

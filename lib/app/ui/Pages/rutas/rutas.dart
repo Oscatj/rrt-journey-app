@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
-import 'package:places_autocomplete/app/ui/Pages/detail_rutas/detail_rutas.dart';
-import 'package:places_autocomplete/services/directions.repository.dart';
+import 'package:places_autocomplete/app/domain/repositories/directions.repository.dart';
+import 'package:places_autocomplete/app/ui/Pages/facturacion/facturacion.dart';
 import '../../../domain/models/direction.dart';
 
 class Rutas extends StatefulWidget {
@@ -105,17 +105,19 @@ class _RutasState extends State<Rutas> {
                                       );
                                     } else if (step.travelMode ==
                                         TravelMode.TRANSIT) {
+                                          //if(TravelMode.TRANSIT == ){}
                                       return StepTransitWidget(
-                                        instructions: step.htmlInstructions!,
-                                        busName:
-                                            step.transitDetails!.line!.name!,
                                         color: Colors.deepOrange,
-                                        precio: 40,
+                                        instructions: step.htmlInstructions!,
+                                        //busName: step.transitDetails!.line!.shortName!,
+                                        transportType: step.transitDetails!.line!.vehicle!.name!,
+                                        
+                                        precio: 15,
                                       );
                                     }
                                       return Text('--${step.htmlInstructions}');
                                     }).toList(),
-                                  ),
+                                  ),                                  
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -133,11 +135,11 @@ class _RutasState extends State<Rutas> {
                                            Navigator.push(
                                             context, 
                                             MaterialPageRoute(
-                                              builder: (context) => DetailRutas()
+                                              builder: (context) => Factura()
                                             ),
                                           );
                                         },
-                                        child: const Text('Ver detalle')
+                                        child: const Text('Aceptar')
                                       ),
                                     ],
                                   ),
@@ -162,12 +164,11 @@ class _RutasState extends State<Rutas> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   SizedBox(
-                      width: 100,
-                      height: 100,
+                      width: 60,
+                      height: 60,
                       child: CircularProgressIndicator(
                         color: Colors.deepOrange,
                         strokeWidth: 10,
-                        backgroundColor: Colors.grey,
                       )),
                 ],
               ),
@@ -183,24 +184,24 @@ class StepWidget extends StatelessWidget {
   const StepWidget({
     Key? key,
     required this.instructions,
-    required this.color,
+    this.color,
   }) : super(key: key);
 
   final String instructions;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Icon(Icons.directions_walk),
+        ),
         Container(
           height: 50,
           width: 5,
           color: color,
-        ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Icon(Icons.directions_walk),
         ),
         Flexible(
           child: Padding(
@@ -215,33 +216,34 @@ class StepWidget extends StatelessWidget {
     );
   }
 }
-
 class StepTransitWidget extends StatelessWidget {
   const StepTransitWidget({
     Key? key,
     required this.instructions,
-    required this.color,
-    required this.busName,
+    this.color,
+    this.busName,
+    this.transportType,
     required this.precio,
   }) : super(key: key);
 
-  final String busName;
+  final String? busName;
   final String instructions;
-  final Color color;
+  final String? transportType;
+  final Color? color;
   final double precio;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Icon(Icons.directions_bus_rounded),
+        ),
         Container(
           height: 50,
           width: 5,
           color: color,
-        ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Icon(Icons.directions_bus_rounded),
         ),
         Flexible(
           child: Padding(
@@ -250,9 +252,13 @@ class StepTransitWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  busName,
+                  'Tipo de vehículo: ${transportType!}',
                   softWrap: true,
-                ),
+                ),/*
+                Text(
+                  busName!,
+                  softWrap: true,
+                ),*/
                 Text(
                   instructions,
                   softWrap: true,
@@ -262,7 +268,8 @@ class StepTransitWidget extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.w500
-                  ),
+                  )
+
                 )
               ],
             ),

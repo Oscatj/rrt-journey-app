@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
-
+import 'package:intl/intl.dart';
+import 'package:places_autocomplete/app/domain/models/journey.dart';
+import '../../../domain/response/journey_response.dart';
 import 'controller/controller_indication.dart';
 
 class SearchAutocomplete extends StatefulWidget {
@@ -203,6 +206,12 @@ class _SearchAutocompleState extends State<SearchAutocomplete> {
                           );
                       }
                     }
+                    final origen = _startController.text;
+                    final destino = _endController.text;
+                    final DateTime now = DateTime.now();
+                    final DateFormat formatter =DateFormat('yyyy-MM-dd');
+                    final String formatted = formatter.format(now);
+                    createJourney(origen: origen, destino: destino, fecha: formatted);
                   },
                 );
               },

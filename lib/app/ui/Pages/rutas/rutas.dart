@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
 import 'package:places_autocomplete/app/domain/repositories/directions.repository.dart';
@@ -7,6 +8,7 @@ import '../../../domain/models/direction.dart';
 class Rutas extends StatefulWidget {
   final DetailsResult? startPosition; // <------ add this
   final DetailsResult? endPosition; // <------ add this
+  
 
   const Rutas({super.key, this.startPosition, this.endPosition});
 
@@ -17,9 +19,9 @@ class Rutas extends StatefulWidget {
 class _RutasState extends State<Rutas> {
   var service = DirectionsRepository();
   bool isLoading = true;
-
   @override
   Widget build(BuildContext context) {
+    //DetailsResult? origen = widget.startPosition;
     return Scaffold(
       appBar: AppBar(
         leading: Builder(
@@ -111,12 +113,11 @@ class _RutasState extends State<Rutas> {
                                         instructions: step.htmlInstructions!,
                                         //busName: step.transitDetails!.line!.shortName!,
                                         transportType: step.transitDetails!.line!.vehicle!.name!,
-                                        
                                         precio: 15,
                                       );
                                     }
                                       return Text('--${step.htmlInstructions}');
-                                    }).toList(),
+                                    }).toList()
                                   ),                                  
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -132,15 +133,15 @@ class _RutasState extends State<Rutas> {
                                           ),
                                         ),
                                         onPressed: () {
-                                           Navigator.push(
-                                            context, 
-                                            MaterialPageRoute(
-                                              builder: (context) => Factura()
-                                            ),
-                                          );
+                                          Navigator.push(
+                                          context, 
+                                          MaterialPageRoute(
+                                          builder: (context) => Factura()
+                                          ),
+                                              );
                                         },
                                         child: const Text('Aceptar')
-                                      ),
+                                      )
                                     ],
                                   ),
                                 ],
@@ -178,6 +179,20 @@ class _RutasState extends State<Rutas> {
       ),
     );
   }
+  Future createJourney({
+    required DetailsResult origen,
+    required String destino, 
+    DateTime? fecha,
+  })async{
+    final journey = FirebaseFirestore.instance.collection('journeys').doc('my-id');
+
+    final json = {
+      'origen': origen,
+      'destino': destino,
+      'fecha': fecha
+    };
+  }
+
 }
 
 class StepWidget extends StatelessWidget {

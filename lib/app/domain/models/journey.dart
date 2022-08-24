@@ -1,15 +1,31 @@
-/*class Journey {
-  String origen;
-  String destino;
-  double precio;
-  String fecha;
+class Journey {
+  Journey ({
+    this.id = '',
+    required this.origen, 
+    required this.destino,
+    this.fecha
+    });
+    String? id;
+    String origen;
+    String destino; 
+    String? fecha;
 
-  Journey (String _origen, String _destino, double _precio, String _fecha) {
-    this.origen = _origen;
-    this.destino = _destino;
-    this.precio = _precio;
-    this.fecha = _fecha;
-  }
+    Map<String, dynamic> toJson() => {
+    'id': id,
+    'origen': origen,
+    'destino': destino,
+    'fecha': fecha
+
+    };
+
+    static Journey fromJson(Map<String, dynamic> json) => Journey(
+      id: json['id'],
+      origen: json['origen'], 
+      destino: json['destino'],
+      fecha: json['fecha']
+
+    );
 }
 
-*/
+   
+

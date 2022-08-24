@@ -53,12 +53,13 @@ class NavBar extends ConsumerWidget{
             currentAccountPicture: CircleAvatar(
               child: CircleAvatar(
                 radius: 65,
-                child: user.photoURL == null 
+                child: 
+                user.photoURL == null 
                 ? Text(
                   letter,
                   style: (
                     TextStyle(
-                      fontSize: 45
+                      fontSize: 45,
                     )
                   ),
                 ) 

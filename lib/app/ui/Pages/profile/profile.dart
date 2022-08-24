@@ -62,17 +62,22 @@ class Profile extends ConsumerWidget {
         ),
         body: ListView(
           children: [
-            CircleAvatar(
-              radius: 75,
-              child: user.photoURL == null
-                  ? Text(
-                      letter,
-                      style: (TextStyle(fontSize: 75)),
+             CircleAvatar(
+              backgroundColor: Colors.deepOrange,
+                radius: 80,
+                child: user.photoURL == null 
+                ? Text(
+                  letter,
+                  style: (
+                    TextStyle(
+                      fontSize: 70,
+                      color: Colors.white
                     )
-                  : null,
-              backgroundImage:
-                  user.photoURL != null ? NetworkImage(user.photoURL!) : null,
-            ),
+                  ),
+                ) 
+                : null,
+                backgroundImage: user.photoURL != null ? NetworkImage(user.photoURL!): null,
+              ),
             SizedBox(height: 10),
             Center(
                 child: Text(

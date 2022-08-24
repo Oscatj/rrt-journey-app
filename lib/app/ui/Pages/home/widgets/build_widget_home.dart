@@ -1,60 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
-import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
+import 'package:places_autocomplete/app/domain/models/journey.dart';
+/*
+final isDark = context.isDarkMode;
+  final iconColor = isDark ? Colors.white: Colors.deepOrange;
+  final textColor = isDark ? Colors.grey: Color.fromARGB(255, 99, 99, 99);
+  final buttonColor = isDark ? Colors.white: Colors.grey.shade300;
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    final isDark = context.isDarkMode;
-    final iconColor = isDark ? Colors.white: Colors.deepOrange;
-    final textColor = isDark ? Colors.grey: Color.fromARGB(255, 99, 99, 99);
-    final buttonColor = isDark ? Colors.white: Colors.grey.shade300;
-    return Scaffold(
-          drawer: const NavBar(),
-          appBar: AppBar(
-            leading: Builder(
-              builder: (context) => IconButton(
-                onPressed: (){
-                  Scaffold.of(context).openDrawer();
-                }, 
-                icon: const Icon(
-                  Icons.menu,
-                  color: Colors.deepOrange,
-                ),
-              ),
-            ),
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            actions: <Widget> [
-              Row(
-                //mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon (
-                      Icons.location_on,
-                      color: Colors.deepOrange
-                    ),
-                  ),
-                  const Text(
-                    'RRT-JOURNEY',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: Colors.deepOrange
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 18),
-            ],
-          ),
-          body: ListView(
+Widget buidJourne(Journey journeys) => ListView(
+  
             padding: const EdgeInsets.all(20),
             children: [
                Container(
@@ -137,7 +92,5 @@ class Home extends StatelessWidget {
                   ],
                 ),
             ], 
-         )
-        );
-      }
-}
+);
+}*/

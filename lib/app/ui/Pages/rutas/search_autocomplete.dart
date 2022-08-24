@@ -1,10 +1,7 @@
 import 'dart:async';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
 import 'package:intl/intl.dart';
-import 'package:places_autocomplete/app/domain/models/journey.dart';
 import '../../../domain/response/journey_response.dart';
 import 'controller/controller_indication.dart';
 

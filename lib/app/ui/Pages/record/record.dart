@@ -43,22 +43,25 @@ class Record extends StatelessWidget {
           SizedBox(width: 18),
         ],
       ),
-      body: StreamBuilder<List<Journey>>(
-        stream: readJourneys(),
-        builder: (context, snapshot){
-          if(snapshot.hasError){
-            return const Text('Algo salió mal');
-          }else if(snapshot.hasData){
-            final journeys = snapshot.data!;
-            return ListView(
-              children: journeys.map(buidJourney).toList(),
-            );
-          }else {
-            return const Center(
-              child: CircularProgressIndicator()
-            );
-          }
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(1),
+        child: StreamBuilder<List<Journey>>(
+          stream: readJourneys(),
+          builder: (context, snapshot){
+            if(snapshot.hasError){
+              return const Text('Algo salió mal');
+            }else if(snapshot.hasData){
+              final journeys = snapshot.data!;
+              return ListView(
+                children: journeys.map(buidJourneyRecord).toList(),
+              );
+            }else {
+              return const Center(
+                child: CircularProgressIndicator()
+              );
+            }
+          },
+        ),
       ),
       
     );

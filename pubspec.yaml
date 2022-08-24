@@ -46,6 +46,7 @@ dependencies:
   google_sign_in: ^5.4.1
   cloud_firestore: ^3.4.5
   permission_handler: ^10.0.0
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:

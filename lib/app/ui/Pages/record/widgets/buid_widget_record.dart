@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places_autocomplete/app/domain/models/journey.dart';
 
-Widget buidJourney(Journey journeys) => Column(
+Widget buidJourneyRecord(Journey journeys) => Column(
   children: [
     Row(
       mainAxisSize: MainAxisSize.max,

@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/domain/models/journey.dart';
 import 'package:places_autocomplete/app/domain/response/journey_response.dart';
+import 'package:places_autocomplete/app/ui/Pages/help/help.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/widgets/build_Journey_home.dart';
+import 'package:places_autocomplete/app/ui/Pages/my_routes/my_routes.dart';
+import 'package:places_autocomplete/app/ui/Pages/profile/profile.dart';
 import 'package:places_autocomplete/app/ui/Pages/record/record.dart';
 import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
 
@@ -203,7 +206,11 @@ class Home extends StatelessWidget {
                           size: 60,
                         ),
                         TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context)=> Record())
+                          );
+                          },
                           child: Text(
                             'Historial',
                             style: TextStyle(
@@ -230,7 +237,11 @@ class Home extends StatelessWidget {
                           size: 60,
                         ),
                         TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context)=> MyRoutes())
+                          );
+                          },
                           child: Text(
                             'Mis Rutas',
                             style: TextStyle(
@@ -265,7 +276,11 @@ class Home extends StatelessWidget {
                           size: 60,
                         ),
                         TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context)=> Profile())
+                          );
+                          },
                           child: Text(
                             'Perfil',
                             style: TextStyle(
@@ -292,7 +307,11 @@ class Home extends StatelessWidget {
                           size: 60,
                         ),
                         TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context)=> Help())
+                          );
+                          },
                           child: Text(
                             'Ayuda',
                             style: TextStyle(

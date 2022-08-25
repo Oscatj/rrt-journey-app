@@ -23,7 +23,7 @@ Widget buidJourneyRecord(Journey journeys) => Column(
                 ),
                 Container(
                   width: 2,
-                  height: 80,
+                  height: 100,
                   decoration: BoxDecoration(
                     color: Colors.black45,
                   ),
@@ -58,6 +58,15 @@ Widget buidJourneyRecord(Journey journeys) => Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    const Text(
+                                      'Fecha',
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black54,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500
+                                      ),
+                                    ),
                                     Text(
                                       '${journeys.fecha}',
                                       style: const TextStyle(
@@ -67,24 +76,6 @@ Widget buidJourneyRecord(Journey journeys) => Column(
                                         fontSize: 15,
                                       )  
                                     ),
-                                    const Text(
-                                      'Desde: ',
-                                      style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black54,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500
-                                      ),
-                                    ),
-                                    const Text(
-                                      'Hasta:',
-                                      style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black54,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -93,7 +84,7 @@ Widget buidJourneyRecord(Journey journeys) => Column(
                               alignment: AlignmentDirectional(1, 0),
                               child: Container(
                                 width: 240,
-                                height: 100,
+                                height: 120,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +95,19 @@ Widget buidJourneyRecord(Journey journeys) => Column(
                                       child: Text(''),
                                       ),
                                     Align(
-                                      alignment: AlignmentDirectional(1, 0),
+                                      alignment: Alignment.bottomRight,
+                                      child: Text(
+                                        'Ruta',
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.black54,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500
+                                         ),
+                                        ),
+                                      ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
                                       child: Text(
                                         '${journeys.origen}',
                                         style: TextStyle(
@@ -116,7 +119,7 @@ Widget buidJourneyRecord(Journey journeys) => Column(
                                         ),
                                       ),
                                     Align(
-                                      alignment: AlignmentDirectional(1,10),
+                                      alignment: Alignment.bottomRight,
                                       child: Text(
                                         '${journeys.destino}',
                                         style: TextStyle(

@@ -320,7 +320,42 @@ class Factura extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          const Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+            child: Text(
+              'Fecha',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                  color: Color(0xFFFF4C00),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+            child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                      child: Text(
+                        '12/12/2021',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18
+                        ),
+                        
+                      ),
+                    ),
+                  ],
+                ),
+          ),
         ]
       )
     );

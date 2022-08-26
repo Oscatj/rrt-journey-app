@@ -1,12 +1,39 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:places_autocomplete/app/domain/models/rutasPersonalizadas.dart';
+import 'package:places_autocomplete/app/domain/response/rutasP_response.dart';
+import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
+import 'package:places_autocomplete/app/ui/Pages/my_routes/myRoutes.dart';
 
-class SavedRouter extends StatelessWidget {
-  const SavedRouter({Key? key}) : super(key: key);
+class SavedRouter extends StatefulWidget {
+  final String origenText;
+  final String destinoText;
+  SavedRouter(this.origenText, this.destinoText);
+
+
+  //final TextEditingController _stardController;
+  //SearchAutocomplete(this._stardController.text);
+
+  @override
+  State<SavedRouter> createState() => _SavedRouterState();
+}
+
+class _SavedRouterState extends State<SavedRouter> {
+  var nombreController = TextEditingController();
+  var stardController = TextEditingController();
+  var endController = TextEditingController();
+
+  @override
+  void initState() {
+    stardController = TextEditingController(text: widget.origenText);
+    endController = TextEditingController(text: widget.destinoText);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            appBar: AppBar(
+      appBar: AppBar(
         leading: Builder(
           builder: (context) => IconButton(
             onPressed: (){
@@ -59,6 +86,7 @@ class SavedRouter extends StatelessWidget {
                 ),
                 (
                 TextField(
+                  controller: nombreController,
                   style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration (
                     border: InputBorder.none,
@@ -90,9 +118,11 @@ class SavedRouter extends StatelessWidget {
                   ],
                 ),
                 (
-                TextField(
+                TextField( 
+                  controller: stardController,
                   style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration (
+                    
                     border: InputBorder.none,
                     hintStyle: const TextStyle(
                       fontWeight: FontWeight.w500, fontSize: 20),
@@ -120,6 +150,7 @@ class SavedRouter extends StatelessWidget {
                 ),
                 (
                 TextField(
+                  controller: endController,
                   style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration (
                     border: InputBorder.none,
@@ -143,12 +174,19 @@ class SavedRouter extends StatelessWidget {
                   child: (
                     TextButton(
                           onPressed: (){
-                            Navigator.push(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (context) => SavedRouter()
-                              ),
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => MyRoutes(
+                              )),
                             );
+                            final routes = RutasPersonalizadas(
+                              nombre: nombreController.text,
+                              origen: stardController.text,
+                              destino: endController.text
+
+                            );
+                            createRoutes(routes);
                           }, 
                           child: Text(
                             'Guardar esta ruta',
@@ -168,5 +206,11 @@ class SavedRouter extends StatelessWidget {
           )
         ),
       );
+  }
+  Future createRoutes(RutasPersonalizadas routes) async{
+    final docRoutes = FirebaseFirestore.instance.collection('rutasPersonalizadas').doc();
+    routes.id = docRoutes.id;
+    final json = routes.toJson();
+    await docRoutes.set(json);
   }
 }

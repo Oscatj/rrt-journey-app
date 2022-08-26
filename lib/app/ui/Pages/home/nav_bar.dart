@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:places_autocomplete/app/ui/Pages/help/help.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
-import 'package:places_autocomplete/app/ui/Pages/my_routes/my_routes.dart';
+import 'package:places_autocomplete/app/ui/Pages/my_routes/myRoutes.dart';
 import 'package:places_autocomplete/app/ui/Pages/profile/profile.dart';
 import 'package:places_autocomplete/app/ui/Pages/help/transportes/transport._Metro_Tel.dart';
 import 'package:places_autocomplete/app/ui/Pages/record/record.dart';

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:intl/intl.dart';
-import 'package:places_autocomplete/app/ui/Pages/my_routes/form_saved_router.dart';
-import '../../../domain/response/journey_response.dart';
+import 'package:places_autocomplete/app/ui/Pages/my_routes/widgets/form_saved_router.dart';
+import '../../../domain/response/firestore_services.dart';
 import 'controller/controller_indication.dart';
 
 class SearchAutocomplete extends StatefulWidget {
@@ -304,17 +304,22 @@ class _SearchAutocompleteState extends State<SearchAutocomplete> {
                     children: [
                       SizedBox(width: 20),
                       Icon(
-                        Icons.favorite,
+                        Icons.star,
                         color: Colors.deepOrange,
                         size: 25,
                       ),
                       SizedBox(width: 10),
                       TextButton(
                         onPressed: (){
+                          String _origenText = _startController.text;
+                          String _destinoText = _endController.text;
                           Navigator.push(
                             context, 
                             MaterialPageRoute(
-                              builder: (context) => SavedRouter()
+                              builder: (context) => SavedRouter(
+                                _origenText,
+                                _destinoText,  
+                              )
                             ),
                           );
                         }, 

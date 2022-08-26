@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places_autocomplete/app/domain/models/journey.dart';
-import 'package:places_autocomplete/app/domain/response/journey_response.dart';
+import 'package:places_autocomplete/app/domain/response/firestore_services.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
 import 'package:places_autocomplete/app/ui/Pages/record/widgets/buid_widget_record.dart';
 

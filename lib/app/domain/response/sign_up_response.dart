@@ -19,7 +19,7 @@ class SignUpResponse {
       case "weak-password":
         return SignUpError.weakPassword;
       case "network-request-failed":
-      return SignUpError.networkRequestFailed;
+        return SignUpError.networkRequestFailed;
       default:
        return SignUpError.unknown;
      }

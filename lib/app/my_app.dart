@@ -20,7 +20,9 @@ class MyApp extends StatelessWidget {
           navigatorKey: router.navigatorKey,
           debugShowCheckedModeBanner: false,
           initialRoute: Routes.SPLASH,
-          darkTheme: ThemeData.dark(),
+          darkTheme: ThemeData.dark(
+            
+          ),
           theme: ThemeData.light(),
           themeMode: theme.mode,
           navigatorObservers: [

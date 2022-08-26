@@ -5,6 +5,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:places_autocomplete/app/domain/repositories/directions.repository.dart';
+import 'package:places_autocomplete/app/ui/Pages/my_routes/widgets/form_saved_router.dart';
 
 import '../rutas.dart';
 import '../utils/map.utils.dart';
@@ -20,6 +21,8 @@ class ControllerIndication extends StatefulWidget {
 
 class ControllerIndicationState extends State<ControllerIndication> {
 
+  final _startController = TextEditingController();
+  final _endController = TextEditingController();
   late CameraPosition _initialPosition;
   final Completer<GoogleMapController> _controller = Completer();
   Map<PolylineId, Polyline> polylines = {};
@@ -142,22 +145,26 @@ class ControllerIndicationState extends State<ControllerIndication> {
             return Container(
               color: Colors.deepOrange,
               //border: BorderRadius.circular(3),
-              child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    ),
-                    onPressed: () { 
-                      Navigator.push(
-                          context, 
-                          MaterialPageRoute(
-                            builder: (context) => Rutas(
-                              startPosition: widget.startPosition,
-                              endPosition: widget.endPosition,
-                            )),
-                          );
-                    }, 
-                    child: Text('Buscar rutas', style: TextStyle(fontSize: 26)),
-                  )
+              child: Row(
+                children: [
+                  TextButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                        onPressed: () { 
+                          Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (context) => Rutas(
+                                  startPosition: widget.startPosition,
+                                  endPosition: widget.endPosition,
+                                )),
+                              );
+                        }, 
+                        child: Text('Buscar rutas', style: TextStyle(fontSize: 26)),
+                      ),
+                ],
+              )
             );
           })
        ]),

@@ -1,8 +1,6 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:places_autocomplete/app/domain/models/rutasPersonalizadas.dart';
-import 'package:places_autocomplete/app/domain/response/rutasP_response.dart';
+import 'package:places_autocomplete/app/domain/response/firestore_services.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
 import 'package:places_autocomplete/app/ui/Pages/my_routes/widgets/buid_widget_myrouter.dart';
 
@@ -46,14 +44,14 @@ class MyRoutes extends StatelessWidget {
         ],
       ),
       body: StreamBuilder<List<RutasPersonalizadas>>(
-          stream: readMyRotes(),
+          stream: readMyRoutes(),
           builder: (context, snapshot){
             if(snapshot.hasError){
               return AlertDialog(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(child: const Text(
+                  children: const [
+                    Center(child: Text(
                       '¡Ups!', 
                       style: TextStyle(
                         color: Colors.deepOrange,
@@ -106,14 +104,15 @@ class MyRoutes extends StatelessWidget {
             }else if(snapshot.hasData){
               final myRoutes = snapshot.data!;
               return ListView(
-                children: myRoutes.map(buidRoutesSaved).toList(),
+                children: myRoutes.map(buidMyRoutes).toList(),
               );
             }else {
               return const Center(
                 child: CircularProgressIndicator()
               );
             }
-          },
+          }
+          
         ),
     );
   }

@@ -9,7 +9,7 @@ class TransporteMetro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
             leading: Builder(
           builder: (context) => IconButton(
             onPressed: (){
@@ -45,477 +45,565 @@ class TransporteMetro extends StatelessWidget {
               const SizedBox(width: 18),
             ],
           ),
-     body: ListView(
-      children: [
-        SizedBox(height: 20),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 5, 20, 5),
-          child: Text(
-            'Metro de Santo Domingo',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              color: Color.fromARGB(255, 58, 58, 58),
-              fontSize: 18,
-              fontWeight: FontWeight.w600
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.all(10),
-          child: Column(
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 5, 10),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 9, 95, 224),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blue,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(5),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: DefaultTabController(
+                length: 2,
+                initialIndex: 0,
+                child: Column(
+                  children: [
+                    TabBar(
+                      labelColor: Colors.deepOrange,
+                      unselectedLabelColor:
+                          Colors.black,
+                     // labelStyle: FlutterFlowTheme.of(context).subtitle1,
+                      indicatorColor: Colors.deepOrange,
+                      tabs: [
+                        Tab(
+                          text: 'Estaciones',
+                        ),
+                        Tab(
+                          text: 'Tarifas',
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          ListView(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
                             children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                  child: Text(
-                                    'L1',
-                                    style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color:Colors.white,
-                                          fontSize: 10,
-                                        ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                                    child: Row(
+                                      children: [
+                                        Text("Mapa del metro", style: TextStyle(
+                                          fontSize: 20, 
+                                          fontWeight: FontWeight.bold
+                                        )
+                                      ),
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+                                    child: Align(
+                                      alignment: AlignmentDirectional(1, 1),
+                                      child: Align(
+                                        alignment: AlignmentDirectional(-1, 1),
+                                        child: Image.asset(
+                                          'assets/metro.png',
+                                          width: 600,
+                                          height: 200,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Divider(),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 20, 10, 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 0, 0, 0),
+                                          child: Text(
+                                            'Concepción Bona-María Montez (Linea 1)',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-1, 0),
+                                    child: Align(
+                                      alignment: AlignmentDirectional(-1, 0),
+                                      child: Image.asset(
+                                        'assets/linea1.png',
+                                        width: 250,
+                                        height: 700,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 20, 10, 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 0, 0, 0),
+                                          child: Text(
+                                            'Concepción Bona-María Montez (Linea 2)',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.35, 0),
+                                    child: Align(
+                                      alignment: AlignmentDirectional(-1, 0),
+                                      child: Image.asset(
+                                        'assets/linea2.jpg',
+                                        width: 200,
+                                        height: 500,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    'Centro de los Heroes-Mamá Tingó',
-                    style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 5, 10),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blue,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(5),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
+                          ListView(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
                             children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                  child: Text(
-                                    'L2',
-                                    style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color:Colors.white,
-                                          fontSize: 10,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: Container(
+                                  width: 100,
+                                  height: 210,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFEFEF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Viaje de ida',
+                                                style:
+                                                  TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold
+                                                  ),
+                                              ),
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Text(
+                                                    'RD\$20.00',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      color:
+                                                      Color(0xFFFF0000),
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Es un producto compuesto por un (1) solo viaje.\n',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(-1, -0.1),
+                                            child: Text(
+                                              'Requisitos:\n',
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            )
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Comprar una tarjeta de una carga con un costo adicional de 15 pesos o poseer la tarjeta recargable.\n',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: Container(
+                                  width: 100,
+                                  height: 210,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFEFEF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 10, 10, 10),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 5),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Viaje de ida y vuelta',
+                                                style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                              ),
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Text(
+                                                    'RD\$40.00',
+                                                    style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              color: Colors.red,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Es un producto compuesto de dos (2) viajes.\n',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(-1, -0.1),
+                                            child: Text(
+                                              'Requisitos:\n',
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Comprar una tarjeta de una carga con un costo adicional de 15 pesos o poseer la tarjeta recargable.\n',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: Container(
+                                  width: 100,
+                                  height: 210,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFEFEF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 10, 10, 10),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 5),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Plan de viaje Multi 20',
+                                                style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                              ),
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Text(
+                                                    'RD\$180.00',
+                                                    style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              color: Colors.red,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Es un producto compuesto de diez (10) viajes con un descuento del 7.5% del precio regular. Este no permite la compra de otro plan de viaje, hasta ser consumido totalmente.',
+                                           style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(-1, -0.1),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 15, 0, 0),
+                                              child: Text(
+                                                'Requisitos:\n',
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(-1, -0.1),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 15),
+                                              child: Text(
+                                                'Poseer una tarjeta recargable.\n',
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: Container(
+                                  width: 100,
+                                  height: 210,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFEFEF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 10, 10, 10),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 5),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Plan de viaje Multi 10',
+                                                style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                              ),
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Text(
+                                                    'RD\$360.00',
+                                                    style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              color: Colors.red,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Es un producto compuesto de veinte (20) viajes con un descuento del 10% al precio regular. Este no permite la compra de otro plan de viaje, hasta ser consumido totalmente.',
+                                           style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(-1, -0.1),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 15, 0, 0),
+                                              child: Text(
+                                                'Requisitos:\n',
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(-1, -0.1),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 15),
+                                              child: Text(
+                                                'Poseer una tarjeta recargable.\n',
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    'Concepción Bona-María Montez',
-                    style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 5, 10),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blue,
-                          )
                         ],
-                        borderRadius: BorderRadius.circular(5),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
-                                  child: Text(
-                                    'L1B',
-                                    style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color:Colors.white,
-                                          fontSize: 8,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                     ),
-                  ),
-                  const Text(
-                    'Concepción Bona-María Montez',
-                    style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
-        const Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 5, 20, 5),
-          child: Text(
-            'Teleféricoo de Santo Domingo',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              color: Color.fromARGB(255, 58, 58, 58),
-              fontSize: 18,
-              fontWeight: FontWeight.w600
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.all(10),
-          child: Column(
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 5, 10),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: const  Color.fromARGB(255, 157, 175, 76),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.blue,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(5),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: const [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                  child: Text(
-                                    'T1',
-                                    style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color:Colors.white,
-                                          fontSize: 10,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    'Estación de Gualey',
-                    style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 5, 10),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 157, 175, 76),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.blue,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(5),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: const [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                  child: Text(
-                                    'T2',
-                                    style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color:Colors.white,
-                                          fontSize: 10,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    'Estación de Tres Brazos',
-                    style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 5, 10),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 157, 175, 76),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.blue,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(5),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: const [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                  child: Text(
-                                    'T3',
-                                    style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color:Colors.white,
-                                          fontSize: 10,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    'Estación de Sabana Perdida',
-                    style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-}
-}
-
-class DataSearch extends SearchDelegate<String> {
-  final ciudades = [
-    "Distrito Nacional",
-    "Azua de Compostela",
-    "Estebanía",
-    "Guayabal",
-    "Las Yayas de Viajama",
-    "Padre Las Casas",
-    "Peralta",
-    "Pueblo Viejo",
-    "Villa Jaragua",
-    "Barahona",
-    "Cabral",
-    "La Ciénaga",
-    "Vicente Noble",
-    "Dajabón",
-    "Las Salinas",
-    "Loma de Cabrera",
-    "Restauración",
-    "San Francisco de Macorís",
-    "Arenoso",
-    "Eugenio María de Hostos",
-  ];
-
-  final recientes = [
-    "Peralta",
-    "Pueblo Viejo",
-    "Villa Jaragua",
-    "Barahona",
-    "Cabral",
-    "La Ciénaga",
-  ];
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [IconButton(
-      onPressed: (){
-        query = "";
-      }, 
-      icon: Icon(Icons.clear))
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.arrow_back),
-      onPressed: (){
-        Navigator.push(
-          context, 
-            MaterialPageRoute(
-              builder: (context) => TransporteMetro()
-            ),
-        );
-      }, 
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return SearchAutocomplete();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final suggestionsList = query.isEmpty 
-    ? recientes 
-    : ciudades.where((p) => p.startsWith(query)).toList();
-
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          showResults(context);
-        },
-        leading: Icon(Icons.location_city),
-        title: RichText(
-          text: TextSpan(
-            text: suggestionsList[index].substring(0, query.length),
-            style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold
-            ),
-            children: [
-              TextSpan(
-                text: suggestionsList[index].substring(query.length),
-                style: TextStyle(
-                  color: Colors.grey
+                  ],
                 ),
-              )
-            ]
-          )
+              ),
+            ),
+          ],
         ),
       ),
-      itemCount: suggestionsList.length,
     );
   }
-
 }
+

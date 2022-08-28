@@ -1,12 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
-import 'package:places_autocomplete/app/domain/models/journey.dart';
-import 'package:places_autocomplete/app/domain/response/firestore_services.dart';
 import 'package:places_autocomplete/app/ui/Pages/help/help.dart';
+import 'package:places_autocomplete/app/ui/Pages/help/transportes/transportes.dart';
 import 'package:places_autocomplete/app/ui/Pages/home/nav_bar.dart';
-import 'package:places_autocomplete/app/ui/Pages/home/widgets/build_Journey_home.dart';
-import 'package:places_autocomplete/app/ui/Pages/my_routes/myRoutes.dart';
 import 'package:places_autocomplete/app/ui/Pages/profile/profile.dart';
 import 'package:places_autocomplete/app/ui/Pages/record/record.dart';
 import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
@@ -228,22 +225,22 @@ class Home extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal:30),
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal:18),
                     child: Column(
                       children: [
                         Icon(
-                          Icons.apartment,
+                          Icons.train,
                           color: Colors.white,
                           size: 60,
                         ),
                         TextButton(
                           onPressed: (){
                             Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=> MyRoutes())
+                            MaterialPageRoute(builder: (context)=> TransportesGeneral())
                           );
                           },
                           child: Text(
-                            'Mis Rutas',
+                            'Transportes',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

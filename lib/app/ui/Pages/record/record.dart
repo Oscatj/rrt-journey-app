@@ -52,7 +52,7 @@ class Record extends StatelessWidget {
               return const Text('Algo salió mal');
             }else if(snapshot.hasData){
               final journeys = snapshot.data!;
-              return ListView(
+              return ListView( 
                 children: journeys.map(buidJourneyRecord).toList(),
               );
             }else {

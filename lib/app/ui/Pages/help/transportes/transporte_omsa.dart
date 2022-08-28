@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:places_autocomplete/app/ui/Pages/help/help.dart';
-import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
 import 'package:places_autocomplete/app/ui/Pages/rutas/search_autocomplete.dart';
 import '../../rutas/search_autocomplete.dart';
 
@@ -10,7 +9,7 @@ class TransporteOmsa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
+      appBar: AppBar(
             leading: Builder(
           builder: (context) => IconButton(
             onPressed: (){
@@ -32,10 +31,9 @@ class TransporteOmsa extends StatelessWidget {
             backgroundColor: Colors.transparent,
             actions: <Widget> [
               Row(
-                //mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'OMSA',
+                children: const [
+                  Text(
+                    'Metro y teleférico',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
@@ -47,22 +45,39 @@ class TransporteOmsa extends StatelessWidget {
               const SizedBox(width: 18),
             ],
           ),
-      body: ListView(
-      children: [
-        const SizedBox(height: 10),
-        const Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 5, 20, 5),
-          child: Text(
-            'OMSA de Santo Domingo',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              color: Color.fromARGB(255, 58, 58, 58),
-              fontSize: 18,
-              fontWeight: FontWeight.w600
-            ),
-          ),
-        ),
-        Padding(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: DefaultTabController(
+                length: 2,
+                initialIndex: 0,
+                child: Column(
+                  children: [
+                    TabBar(
+                      labelColor: Colors.deepOrange,
+                      unselectedLabelColor: Colors.black,
+                      //labelStyle: Colors.deepOrange,
+                      indicatorColor: Colors.deepOrange,
+                      tabs: [
+                        Tab(
+                          text: 'Paradas',
+                        ),
+                        Tab(
+                          text: 'Tarifas',
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          ListView(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
+                            children: [
+                                      Padding(
           padding: const EdgeInsetsDirectional.all(10),
           child: Column(
             children: [
@@ -454,104 +469,445 @@ class TransporteOmsa extends StatelessWidget {
             ],
           ),
         ),
-      ],
-    ),
-  );
-}
-}
-class DataSearch extends SearchDelegate<String> {
-  final ciudades = [
-    "Distrito Nacional",
-    "Azua de Compostela",
-    "Estebanía",
-    "Guayabal",
-    "Las Yayas de Viajama",
-    "Padre Las Casas",
-    "Peralta",
-    "Pueblo Viejo",
-    "Villa Jaragua",
-    "Barahona",
-    "Cabral",
-    "La Ciénaga",
-    "Vicente Noble",
-    "Dajabón",
-    "Las Salinas",
-    "Loma de Cabrera",
-    "Restauración",
-    "San Francisco de Macorís",
-    "Arenoso",
-    "Eugenio María de Hostos",
-  ];
-
-  final recientes = [
-    "Peralta",
-    "Pueblo Viejo",
-    "Villa Jaragua",
-    "Barahona",
-    "Cabral",
-    "La Ciénaga",
-  ];
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [IconButton(
-      onPressed: (){
-        query = "";
-      }, 
-      icon: Icon(Icons.clear))
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.arrow_back),
-      onPressed: (){
-        Navigator.push(
-          context, 
-            MaterialPageRoute(
-              builder: (context) => TransporteOmsa()
-            ),
-        );
-      }, 
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return SearchAutocomplete();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final suggestionsList = query.isEmpty 
-    ? recientes 
-    : ciudades.where((p) => p.startsWith(query)).toList();
-
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          showResults(context);
-        },
-        leading: Icon(Icons.location_city),
-        title: RichText(
-          text: TextSpan(
-            text: suggestionsList[index].substring(0, query.length),
-            style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold
-            ),
-            children: [
-              TextSpan(
-                text: suggestionsList[index].substring(query.length),
-                style: TextStyle(
-                  color: Colors.grey
+ 
+                           ],
+                          ),
+                          ListView(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                                child: Container(
+                                  width: 100,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFEFEF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Servicio económico',
+                                                style: TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold
+                                                    ),
+                                              ),
+                                              Expanded(
+                                                child: Align(
+                                                  alignment: AlignmentDirectional(1, 0),
+                                                  child: Text(
+                                                    'RD\$10.00',
+                                                    style: TextStyle(
+                                                          fontFamily: 'Poppins',
+                                                          color: Color(0xFFFF0000),
+                                                          fontSize: 16,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Es nuestro servicio más económico, en autobuses sin aire acondicionado y con detenciones en todas las paradas\n',
+                                            style: TextStyle(
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                                child: Container(
+                                  width: 100,
+                                  height: 110,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFEFEF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Servicio normal',
+                                                style: TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold
+                                                    ),
+                                              ),
+                                              Expanded(
+                                                child: Align(
+                                                  alignment: AlignmentDirectional(1, 0),
+                                                  child: Text(
+                                                    'RD\$15.00',
+                                                    style: TextStyle(
+                                                          fontFamily: 'Poppins',
+                                                          color: Color(0xFFFF0000),
+                                                          fontSize: 16,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: AlignmentDirectional(-1, 0),
+                                          child: Text(
+                                            'Es el mismo tipo de servicio normal pero con aire acondicionado incluido\n',
+                                            style: TextStyle(
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 0, 10, 0),
+                                child: Text(
+                                  'Normas dentro del autobus',
+                                  style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.deepOrange,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500
+                                      ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.monetization_on,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Padding(
+                                      padding:
+                                          EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                      child: Text(
+                                        'Siempre tener pasaje en menudo',
+                                        style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.payments,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                        child: Text(
+                                          'No pagar con papeletas mayores de RD\$100.00',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.smoke_free,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                        child: Text(
+                                          'No fumar',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.no_meals_sharp,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                        child: Text(
+                                          'No comer',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.restore_from_trash_outlined,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                        child: Text(
+                                          'No tirar basura dentro del autobús',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.emoji_nature,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 10),
+                                        child: Text(
+                                          'No arrojar objetos desde dentro del autobús',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.broken_image_sharp,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                        child: Text(
+                                          'No hacer ningún daño al autobús',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.people,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                        child: Text(
+                                          'Tener respeto hacia el conductor y al cobrador',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.workspaces_filled,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
+                                        child: Text(
+                                          'No cargar objetos o bultos pesados',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.emoji_people,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(2, 0, 10, 10),
+                                        child: Text(
+                                          'Pedir su parada con tiempo, antes de llegar a la misma',
+                                          style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              )
-            ]
-          )
-        ),
-      ),
-      itemCount: suggestionsList.length,
+              ),
+            )
+          ]
+        )
+      )
     );
   }
-
 }

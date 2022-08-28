@@ -1,15 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:places_autocomplete/app/domain/models/rutasPersonalizadas.dart';
-import 'package:places_autocomplete/app/domain/response/rutasP_response.dart';
-import 'package:places_autocomplete/app/ui/Pages/home/home.dart';
+import 'package:places_autocomplete/app/domain/response/firestore_services.dart';
 import 'package:places_autocomplete/app/ui/Pages/my_routes/myRoutes.dart';
 
 class SavedRouter extends StatefulWidget {
   final String origenText;
   final String destinoText;
   SavedRouter(this.origenText, this.destinoText);
-
 
   //final TextEditingController _stardController;
   //SearchAutocomplete(this._stardController.text);
@@ -180,13 +176,10 @@ class _SavedRouterState extends State<SavedRouter> {
                               builder: (context) => MyRoutes(
                               )),
                             );
-                            final routes = RutasPersonalizadas(
-                              nombre: nombreController.text,
-                              origen: stardController.text,
-                              destino: endController.text
-
-                            );
-                            createRoutes(routes);
+                            final nombre = nombreController.text;
+                            final origen = stardController.text;
+                            final destino = endController.text;
+                            createRoutes(nombre: nombre, origen: origen, destino: destino);
                           }, 
                           child: Text(
                             'Guardar esta ruta',
@@ -207,10 +200,11 @@ class _SavedRouterState extends State<SavedRouter> {
         ),
       );
   }
+  /*
   Future createRoutes(RutasPersonalizadas routes) async{
     final docRoutes = FirebaseFirestore.instance.collection('rutasPersonalizadas').doc();
     routes.id = docRoutes.id;
     final json = routes.toJson();
     await docRoutes.set(json);
-  }
+  }*/
 }

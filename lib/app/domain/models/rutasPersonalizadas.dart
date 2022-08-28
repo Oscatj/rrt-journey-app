@@ -1,4 +1,3 @@
-
 class RutasPersonalizadas {
   RutasPersonalizadas({
     this.id = '',
@@ -6,10 +5,10 @@ class RutasPersonalizadas {
     required this.origen, 
     required this.destino
   });
-    String id;
-    final String nombre;
-    final String origen;
-    final String destino;
+    String? id;
+    String nombre;
+    String origen;
+    String destino;
   
     Map<String, dynamic> toJson() => {
     'id': id,

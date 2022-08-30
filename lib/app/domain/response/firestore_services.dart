@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:places_autocomplete/app/domain/models/rutasPersonalizadas.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journey.dart';
 
 //Listar viaje
@@ -30,21 +31,13 @@ Future createJourney({
     }
   }
 
-  //Rutas Personalizadas
-
-  //Listar rutas
-  Stream<List<RutasPersonalizadas>> readMyRoutes()=> FirebaseFirestore.instance
-  .collection('rutasPersonalizadas')
-  .snapshots()
-  .map((snapshot) =>
-      snapshot.docs.map((doc) => RutasPersonalizadas.fromJson(doc.data())).toList());
-
   Future createRoutes({ 
     String? id,
     required String nombre,
     required String origen,
     required String destino, 
   })async{
+
     if(nombre != '' && origen != '' && destino != ''){
       final docRoutes = FirebaseFirestore.instance.collection('rutasPersonalizadas').doc();
           final routes = RutasPersonalizadas(
@@ -55,11 +48,8 @@ Future createJourney({
           );
       final json = routes.toJson();
 
+      //final prefs = await SharedPreferences.getInstance();
+      //await prefs.setStringList()
       await docRoutes.set(json);
     }
   }
-
-  Future<void> deletRutas(String idRutasP) => FirebaseFirestore.instance
-    .collection('rutasPersonalizadas')
-    .doc(idRutasP)
-    .delete();

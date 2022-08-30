@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:places_autocomplete/app/domain/repositories/authentication_repository.dart';
 import 'package:places_autocomplete/app/domain/response/reset_password_response.dart';
 import 'package:places_autocomplete/app/domain/response/sign_in_response.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final FirebaseAuth _auth;
@@ -43,6 +43,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   
   @override
   Future<SignInResponse> SignInWithEmailAndPassword(String email, String password) async {
+
     try{
       final userCredential = await _auth.signInWithEmailAndPassword(
         email: email, 

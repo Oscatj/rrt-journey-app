@@ -107,13 +107,12 @@ class _RutasState extends State<Rutas> {
                                       );
                                     } else if (step.travelMode ==
                                         TravelMode.TRANSIT) {
-                                          //if(TravelMode.TRANSIT == ){}
                                       return StepTransitWidget(
                                         color: Colors.deepOrange,
                                         instructions: step.htmlInstructions!,
                                         //busName: step.transitDetails!.line!.shortName!,
                                         transportType: step.transitDetails!.line!.vehicle!.name!,
-                                        precio: 15,
+                                      
                                       );
                                     }
                                       return Text('--${step.htmlInstructions}');
@@ -133,12 +132,15 @@ class _RutasState extends State<Rutas> {
                                           ),
                                         ),
                                         onPressed: () {
+                                          
                                           Navigator.push(
-                                          context, 
-                                          MaterialPageRoute(
-                                          builder: (context) => Factura()
-                                          ),
-                                              );
+                                            context, 
+                                            MaterialPageRoute(
+                                            builder: (context) => Factura(
+                                              route: routes[index],
+                                            )
+                                            ),
+                                          );
                                         },
                                         child: const Text('Aceptar')
                                       )
@@ -231,21 +233,33 @@ class StepWidget extends StatelessWidget {
     );
   }
 }
+
+double getPrice(String transportType){
+  if(transportType == 'Autobus'){
+    return 15;
+  }
+  else{
+    return 20;
+  }
+}
+
 class StepTransitWidget extends StatelessWidget {
   const StepTransitWidget({
     Key? key,
-    required this.instructions,
+    this.instructions,
     this.color,
     this.busName,
     this.transportType,
-    required this.precio,
+    //this.precioBus,
+    //this.precioTrain,
   }) : super(key: key);
 
   final String? busName;
-  final String instructions;
+  final String? instructions;
   final String? transportType;
   final Color? color;
-  final double precio;
+  final double? precioBus = 15;
+  final double? precioTrain = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -266,25 +280,28 @@ class StepTransitWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Tipo de vehículo: ${transportType!}',
-                  softWrap: true,
-                ),/*
+                Text((() {
+                  if(transportType == 'Autobus'){
+                    return "Precio: DOP\$ ${precioBus.toString()}";
+                  }else{
+                     return "Precio: DOP\$ ${precioTrain.toString()}";
+                  }
+                })(), style: const TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w500
+                  )),
+                /*
                 Text(
                   busName!,
                   softWrap: true,
                 ),*/
                 Text(
-                  instructions,
+                  instructions!,
                   softWrap: true,
                 ),
                 Text(
-                  'Precio: DOP\$ ${precio.toString()}',
-                  style: const TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w500
-                  )
-
+                  'Tipo de transporte: ${transportType!}',
+                  softWrap: true,
                 )
               ],
             ),

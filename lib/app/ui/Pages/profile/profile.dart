@@ -123,7 +123,7 @@ class Profile extends ConsumerWidget {
             ),
             const SizedBox(height: 90),
             //Divider(),
-            TextButton(
+            /*TextButton(
               onPressed: () {}, 
               child: const Text(
                 "Eliminar cuenta",
@@ -131,7 +131,7 @@ class Profile extends ConsumerWidget {
                   color: Colors.red,
                 fontSize: 16
                 ),
-              ))
+              ))*/
           ],
         ));
   }

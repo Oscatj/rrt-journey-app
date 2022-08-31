@@ -12,7 +12,7 @@ Future <String?> ShowInputDialog (
   final result = await showCupertinoDialog(
     context: context, 
     builder: (context) => CupertinoAlertDialog(
-      title: title!=null?Text(title):null,
+      title: title!=null? Text(title):null,
       content: CupertinoTextField(
         controller: controller,
         onChanged: (text){

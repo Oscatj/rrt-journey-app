@@ -9,7 +9,6 @@ class Rutas extends StatefulWidget {
   final DetailsResult? startPosition; // <------ add this
   final DetailsResult? endPosition; // <------ add this
   
-
   const Rutas({super.key, this.startPosition, this.endPosition});
 
   @override
@@ -112,7 +111,6 @@ class _RutasState extends State<Rutas> {
                                         instructions: step.htmlInstructions!,
                                         //busName: step.transitDetails!.line!.shortName!,
                                         transportType: step.transitDetails!.line!.vehicle!.name!,
-                                      
                                       );
                                     }
                                       return Text('--${step.htmlInstructions}');
@@ -132,7 +130,6 @@ class _RutasState extends State<Rutas> {
                                           ),
                                         ),
                                         onPressed: () {
-                                          
                                           Navigator.push(
                                             context, 
                                             MaterialPageRoute(
@@ -142,7 +139,7 @@ class _RutasState extends State<Rutas> {
                                             ),
                                           );
                                         },
-                                        child: const Text('Aceptar')
+                                        child: const Text("Aceptar")
                                       )
                                     ],
                                   ),
@@ -181,20 +178,6 @@ class _RutasState extends State<Rutas> {
       ),
     );
   }
-  Future createJourney({
-    required DetailsResult origen,
-    required String destino, 
-    DateTime? fecha,
-  })async{
-    final journey = FirebaseFirestore.instance.collection('journeys').doc('my-id');
-
-    final json = {
-      'origen': origen,
-      'destino': destino,
-      'fecha': fecha
-    };
-  }
-
 }
 
 class StepWidget extends StatelessWidget {
@@ -234,14 +217,6 @@ class StepWidget extends StatelessWidget {
   }
 }
 
-double getPrice(String transportType){
-  if(transportType == 'Autobus'){
-    return 15;
-  }
-  else{
-    return 20;
-  }
-}
 
 class StepTransitWidget extends StatelessWidget {
   const StepTransitWidget({

@@ -4,23 +4,12 @@ import 'package:places_autocomplete/app/ui/Pages/agradecimiento/agradecimiento.d
 import 'package:places_autocomplete/app/ui/Pages/rutas/rutas.dart';
 import '../../../domain/models/direction.dart' as directions; // <-----------
 
-class Factura extends StatefulWidget {
+class Factura extends StatelessWidget {
+
   final directions.Route route;
   var fecha = DateTime.now();
-  final double precio = 0;
 
   Factura({Key? key, required this.route}) : super(key: key);
-
-  @override
-  State<Factura> createState() => _FacturaState();
-
-}
-
-class _FacturaState extends State<Factura> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +53,7 @@ class _FacturaState extends State<Factura> {
         ],
       ),
       const SizedBox(height: 20),
+      
       Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
         child: Container(
@@ -86,9 +76,9 @@ class _FacturaState extends State<Factura> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  '\$ ',
+                  '\$${calcularTotal(route)}',
                   style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Colors.black,
@@ -125,14 +115,14 @@ class _FacturaState extends State<Factura> {
       ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
-          itemCount: widget.route.legs!.length,
+          itemCount: route.legs!.length,
           itemBuilder: (context, index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Column(
                   // * render Legs
-                  children: widget.route.legs!.map((leg) {
+                  children: route.legs!.map((leg) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -180,7 +170,7 @@ class _FacturaState extends State<Factura> {
               child: Row(
                 children: [
                   Text(
-                    '${widget.fecha.day}/${widget.fecha.month}/${widget.fecha.year}',
+                    '${fecha.day}/${fecha.month}/${fecha.year}',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Color.fromARGB(255, 74, 74, 74),
@@ -189,7 +179,7 @@ class _FacturaState extends State<Factura> {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    '${widget.fecha.hour}:${widget.fecha.minute}',
+                    '${fecha.hour}:${fecha.minute}',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Color.fromARGB(255, 74, 74, 74),
@@ -204,27 +194,37 @@ class _FacturaState extends State<Factura> {
       ),
     ]));
   }
+
 }
 //////////////////////////
-int totalViaje(int value) {
-  var sum = 0;
-  for (var i = 0; i <= value; i++) {
-    sum += i;
+
+double calcularTotal(directions.Route route){
+  double total = 0;
+
+  for (var leg in route.legs!){
+    for (var step in leg. steps!){
+      if (step.travelMode ==
+        directions.TravelMode.TRANSIT) {
+          var transportType = step.transitDetails!.line!.vehicle!.name!;
+
+          total += getPrice(transportType);
+        }
+    }
   }
-  print('finished');
-  return sum;
+  return total;
 }
+
 ///////////////////////////////////
 class DetalleFactura extends StatelessWidget {
   const DetalleFactura({
     Key? key,
-    required this.transportType,
+    this.transportType,
   }) : super(key: key);
 
-  final String transportType;
+  final String? transportType;
   final double? precioBus = 15;
   final double? precioTrain = 20;
-  final double? totalViaje = 0;
+  //final double? totalViaje = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -285,13 +285,7 @@ class DetalleFactura extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                child: Text((() {
-                    if(transportType == 'Autobus'){
-                      return "RD\$${precioBus.toString()}";
-                    } else{
-                      return "RD\$${precioTrain.toString()}";
-                    }
-                  })(),
+                child: Text("${getPrice(transportType!)}",
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: Colors.black,
@@ -306,6 +300,8 @@ class DetalleFactura extends StatelessWidget {
     );
   }
 }
+
+
 
 double getPrice(String transportType){
   double? precioBus = 15;

@@ -13,13 +13,13 @@ class Profile extends ConsumerWidget {
 
   void _updateDisplayName(BuildContext context) async {
     final sessionController = sessionProvider.read;
-    final value = await ShowInputDialog(
+    final value = await showInputDialog(
       context,
       initialValue: sessionController.user!.displayName ?? ""
     );
     if(value != null){
       ProgressDialog.show(context);
-      final user = sessionController.updateDisplayName(value);
+      final user = await sessionController.updateDisplayName(value);
       Navigator.pop(context);
       if (user == null ){
         Dialogs.alert(
